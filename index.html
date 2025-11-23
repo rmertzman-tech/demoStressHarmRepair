@@ -1,47 +1,1506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
-  <title>FAIM-QIRF Demo • Ethics & Epistemic Justice</title>
-  <meta name="color-scheme" content="light only" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  >
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body { height: 100%; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    .chip { @apply text-xs px-2 py-1 rounded-full bg-gray-100; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Biological Architecture of Ethical Agency - Academic Version</title>
+    
+    <style>
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Version 1 Colors - Professional Academic */
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e40af;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-main: #f9fafb;
+            --bg-surface: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            line-height: 1.75;
+            color: var(--text-primary);
+            background: var(--bg-main);
+        }
+
+        /* ==================== LAYOUT ==================== */
+        .app-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-title p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .btn-primary {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* ==================== SIDEBAR NAVIGATION ==================== */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .nav-card {
+            background: var(--bg-surface);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+            padding: 0.625rem 0.75rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-main);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background: #dbeafe;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.completed {
+            color: var(--accent);
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .progress-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+        }
+
+        .progress-title {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-stats {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-bar-container {
+            background: rgba(255,255,255,0.3);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: white;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .content-area {
+            min-height: 80vh;
+        }
+
+        .section-card {
+            background: var(--bg-surface);
+            border-radius: 0.75rem;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Learning Objectives Box */
+        .info-box {
+            border-left: 4px solid var(--primary-light);
+            background: #eff6ff;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box.success {
+            border-left-color: var(--accent);
+            background: #f0fdf4;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--warning);
+            background: #fffbeb;
+        }
+
+        .info-box-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box ul {
+            margin-left: 1.25rem;
+        }
+
+        .info-box li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Content Typography */
+        .content-body h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-body p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .content-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content-body ul, .content-body ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .content-body li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Glossary Terms */
+        .glossary-term {
+            color: var(--primary-light);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            cursor: help;
+            position: relative;
+        }
+
+        .glossary-term:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ==================== ROI CALCULATOR ==================== */
+        .calculator-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .calculator-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .calculator-header h3 {
+            font-size: 1.75rem;
+            margin: 0;
+        }
+
+        .calculator-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .btn-calculate {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: white;
+            color: var(--text-primary);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid;
+        }
+
+        .result-card.danger {
+            border-left-color: var(--danger);
+        }
+
+        .result-card.primary {
+            border-left-color: var(--primary);
+        }
+
+        .result-card.success {
+            border-left-color: var(--accent);
+        }
+
+        .result-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .result-card.danger .result-value {
+            color: var(--danger);
+        }
+
+        .result-card.primary .result-value {
+            color: var(--primary);
+        }
+
+        .result-card.success .result-value {
+            color: var(--accent);
+        }
+
+        .result-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .breakdown-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .breakdown-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .breakdown-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            padding-top: 0.75rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* ==================== QUIZ ==================== */
+        .quiz-container {
+            background: var(--bg-main);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-progress {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .question-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .option {
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            border-color: var(--primary-light);
+            background: #eff6ff;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #dbeafe;
+        }
+
+        .option.correct {
+            border-color: var(--accent);
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0fdf4;
+            border-left: 4px solid var(--accent);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .quiz-score {
+            background: var(--accent);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .quiz-score h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 1rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .glossary-entry {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .glossary-entry:last-child {
+            border-bottom: none;
+        }
+
+        .glossary-entry-term {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .glossary-entry-def {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .nav-card {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .calculator-container {
+                padding: 1.5rem;
+            }
+
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ==================== UTILITIES ==================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-  <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#/home" class="font-bold text-lg">FAIM-QIRF • Demo</a>
-      <nav class="flex gap-3 text-sm">
-        <a class="hover:underline" href="#/playground">Playground</a>
-        <a class="hover:underline" href="#/philosophers">Philosophers</a>
-        <a class="hover:underline" href="#/labs">Injustice Labs</a>
-        <a class="hover:underline" href="#/repair">Repair</a>
-        <a class="hover:underline" href="#/about">About</a>
-      </nav>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-title">
+                <h1>The Biological Architecture of Ethical Agency</h1>
+                <p>Evidence-Based Framework for Institutional Reform</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="openGlossary()">
+                    📚 Glossary
+                </button>
+                <button class="btn btn-secondary" onclick="toggleComparison()">
+                    🔄 Compare Versions
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTAINER ==================== -->
+    <div class="main-container">
+        
+        <!-- ==================== SIDEBAR ==================== -->
+        <aside class="sidebar">
+            <div class="nav-card">
+                <h2 class="nav-title">Contents</h2>
+                <ul class="nav-list" id="navigation">
+                    <!-- Generated by JavaScript -->
+                </ul>
+            </div>
+
+            <div class="progress-card">
+                <div class="progress-title">Your Progress</div>
+                <div class="progress-stats">
+                    <span id="progress-completed">0</span> / <span id="progress-total">9</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <div id="content-section">
+                <!-- Content loaded by JavaScript -->
+            </div>
+        </main>
+
     </div>
-  </header>
 
-  <main id="app" class="max-w-7xl mx-auto px-4 py-6"></main>
-
-  <footer class="border-t mt-10">
-    <div class="max-w-7xl mx-auto px-4 py-6 text-xs text-gray-500">
-      Demo is stateless. Use Export/Import to share a configuration. No tracking, no cookies.
+    <!-- ==================== GLOSSARY MODAL ==================== -->
+    <div class="modal-overlay" id="glossaryModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Glossary</h2>
+                <button class="modal-close" onclick="closeGlossary()">×</button>
+            </div>
+            <div id="glossary-content">
+                <!-- Generated by JavaScript -->
+            </div>
+        </div>
     </div>
-  </footer>
 
-  <script type="module" src="./app/main.js"></script>
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== DATA ====================
+        const contentData = {
+            sections: [
+                {
+                    id: 'executive-summary',
+                    title: 'Executive Summary',
+                    category: 'Overview',
+                    order: 0,
+                    learningObjectives: [
+                        'Understand the biological basis of professional competence',
+                        'Recognize ATCF as measurable substrate of ethical capacity',
+                        'Identify the three-level intervention model (biological, psychological, social)'
+                    ],
+                    body: `
+                        <p>Human flourishing depends on biological prerequisites that current institutional designs systematically undermine. This framework synthesizes research from behavioral biology (Sapolsky), developmental bioelectricity (Levin), and predictive neuroscience (Clark) to demonstrate that chronic institutional stress causes measurable neurological damage to the prefrontal cortex—the neural substrate of ethical reasoning and professional judgment.</p>
+
+                        <h3>The Core Argument</h3>
+                        <p><strong>Professional expertise depends on sustained <span class="glossary-term" data-term="atcf">Adaptive Temporal Coherence Function (ATCF)</span></strong>—the capacity to maintain identity, integrate information, and plan coherently across time. This capacity is biologically implemented in <span class="glossary-term" data-term="pfc">prefrontal cortex</span> and hippocampal systems that chronic stress degrades.</p>
+
+                        <p>Current institutional designs systematically damage this substrate through <strong>uncontrollable responsibility</strong>—holding professionals accountable for outcomes while denying them control over means. The result: predictable neurological degradation, followed by performance failure, followed by institutional collapse.</p>
+
+                        <h3>The Solution: Federation Architecture</h3>
+                        <p>The Polycentric Federation provides three mechanisms that protect ATCF at biological, psychological, and social levels simultaneously:</p>
+
+                        <ul>
+                            <li><strong>Conscience Gates:</strong> Restore control (cortisol regulation, prevents prediction error)</li>
+                            <li><strong>Sortition Panels:</strong> Provide coalition (oxytocin buffering, validates professional judgment)</li>
+                            <li><strong>FHRI/Bond Ratings:</strong> Make damage costly (institutional pain signal, forces correction)</li>
+                        </ul>
+
+                        <p>The <strong>Federation Health & Retention Index (FHRI)</strong> serves as the mandatory architectural constraint—the load-bearing mechanism that makes biological damage fiscally visible in real-time, creating market pressure for institutional reform.</p>
+
+                        <h3>Why This Matters</h3>
+                        <p>This is not aspirational policy—it is <strong>bio-compatible governance</strong> based on four decades of neuroscientific research, with demonstrated positive return on investment from protecting the neural substrate of professional competence rather than continuously destroying and replacing it.</p>
+                    `,
+                    keyTakeaways: [
+                        'Professional expertise requires intact PFC and hippocampal function',
+                        'Current institutions systematically damage these substrates via uncontrollable responsibility',
+                        'ATCF is the measurable capacity that determines professional competence',
+                        'FHRI serves as mandatory architectural constraint making damage costly',
+                        'Federation mechanisms protect biology, psychology, and social structures simultaneously'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'What does ATCF stand for?',
+                            options: [
+                                'Adaptive Temporal Coherence Function',
+                                'Advanced Technical Coordination Framework',
+                                'Autonomy Through Collective Federation',
+                                'Agency Testing and Certification Form'
+                            ],
+                            correct: 0,
+                            explanation: 'ATCF = Adaptive Temporal Coherence Function. It measures the capacity to maintain identity across time and coordinate present actions with past commitments and future goals. This is the biological substrate of professional competence.'
+                        },
+                        {
+                            question: 'What is the most neurotoxic form of stress according to Sapolsky?',
+                            options: [
+                                'High workload with adequate support',
+                                'Responsibility without control',
+                                'Physical danger with quick resolution',
+                                'Interpersonal conflict with peers'
+                            ],
+                            correct: 1,
+                            explanation: 'Responsibility without control is the most damaging stress type. When you are accountable for outcomes but lack the authority or resources to prevent bad outcomes, cortisol remains chronically elevated, causing PFC and hippocampal damage.'
+                        },
+                        {
+                            question: 'What is FHRI\'s primary function in the Federation model?',
+                            options: [
+                                'Track employee satisfaction scores',
+                                'Make workforce damage fiscally visible through bond ratings',
+                                'Provide therapy resources to stressed workers',
+                                'Create a ranking system for institutions'
+                            ],
+                            correct: 1,
+                            explanation: 'FHRI (Federation Health & Retention Index) functions as an institutional "pain receptor" (nociceptor). It links workforce ATCF damage to bond ratings, making the hidden cost of destroyed cognitive capital visible in real-time fiscal terms that management cannot ignore.'
+                        }
+                    ]
+                },
+                {
+                    id: 'biological-reality',
+                    title: 'The Biological Reality',
+                    subtitle: 'Neural Prerequisites for Professional Function',
+                    category: 'Part I: The Problem',
+                    order: 1,
+                    learningObjectives: [
+                        'Identify three PFC regions critical for ethical reasoning',
+                        'Understand cortisol\'s neurotoxic effects on brain structure',
+                        'Recognize the reversibility window for stress-induced damage'
+                    ],
+                    body: `
+                        <p>We begin with empirical findings from Robert Sapolsky's longitudinal research spanning four decades: human capacity for professional judgment—including ethical reasoning, complex planning, and sustained expertise application—depends on specific brain structures that are vulnerable to environmental damage.</p>
+
+                        <h3>The Neural Architecture of Professional Competence</h3>
+                        <p>Professional expertise requires functional integration across three <span class="glossary-term" data-term="pfc">prefrontal cortex (PFC)</span> regions:</p>
+
+                        <p><strong>Dorsolateral PFC (DLPFC):</strong></p>
+                        <ul>
+                            <li><strong>Function:</strong> Working memory, planning, consequence evaluation, task control</li>
+                            <li><strong>Professional application:</strong> Holds multiple factors in mind simultaneously, sequences complex procedures, anticipates outcomes</li>
+                            <li><strong>Damage effects:</strong> Impulsivity, planning failures, inability to manage complexity</li>
+                        </ul>
+
+                        <p><strong>Ventromedial PFC (VMPFC):</strong></p>
+                        <ul>
+                            <li><strong>Function:</strong> Value integration, personality consistency, identity maintenance, social judgment</li>
+                            <li><strong>Professional application:</strong> Ensures actions align with professional standards and core identity, maintains ethical consistency</li>
+                            <li><strong>Damage effects:</strong> Personality disintegration, inability to act according to values, moral inconsistency</li>
+                        </ul>
+
+                        <p><strong>Anterior Cingulate Cortex (ACC):</strong></p>
+                        <ul>
+                            <li><strong>Function:</strong> Error detection, conflict monitoring, value-action alignment</li>
+                            <li><strong>Professional application:</strong> Generates "this violates standards" signal, enables correction before harm</li>
+                            <li><strong>Damage effects:</strong> Moral numbing, inability to detect when behavior contradicts professional norms</li>
+                        </ul>
+
+                        <h3>The Mechanism of Degradation</h3>
+                        <p>Chronic stress—particularly "responsibility without control"—elevates <span class="glossary-term" data-term="cortisol">cortisol</span> to neurotoxic levels. This is not speculative: it is documented across animal models, human neuroimaging studies, and clinical populations.</p>
+
+                        <p><strong>Measurable effects after 6 months of chronic uncontrollable stress:</strong></p>
+                        <ul>
+                            <li>PFC volume decreases ~15%</li>
+                            <li>Hippocampal volume decreases ~8%</li>
+                            <li>Working memory impaired ~25%</li>
+                            <li>Emotional regulation capacity reduced ~30%</li>
+                            <li>Executive function decline measurable on standardized cognitive tests</li>
+                        </ul>
+
+                        <h3>Critical Finding on Reversibility</h3>
+                        <p>These changes are <strong>often reversible</strong> when the stressor is removed:</p>
+                        <ul>
+                            <li><strong>Cushing's syndrome patients:</strong> After cortisol normalized, hippocampus partially rebounded in volume</li>
+                            <li><strong>Work stress studies:</strong> After stress relief period, PFC volume recovered, cognitive flexibility returned</li>
+                            <li><strong>Exercise interventions:</strong> Aerobic activity shown to reverse age-related hippocampal shrinkage by ~2%</li>
+                        </ul>
+
+                        <p><strong>Implication for policy:</strong> This indicates institutional stress causes functional impairment, not necessarily permanent damage—making early intervention critical. The damage is often preventable and reversible with structural change, but becomes increasingly difficult to reverse with prolonged exposure.</p>
+                    `,
+                    keyTakeaways: [
+                        'Three PFC regions (DLPFC, VMPFC, ACC) implement professional competence',
+                        'Chronic uncontrollable stress causes measurable PFC and hippocampal atrophy',
+                        'Damage is often reversible if caught early (within ~2 years)',
+                        'The longer exposure continues, the more difficult recovery becomes',
+                        'This is documented neurobiology, not speculation'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'Which PFC region is responsible for maintaining "who you are" under pressure?',
+                            options: [
+                                'Dorsolateral PFC (planning and working memory)',
+                                'Ventromedial PFC (identity and values integration)',
+                                'Anterior Cingulate Cortex (error detection)',
+                                'Hippocampus (memory formation)'
+                            ],
+                            correct: 1,
+                            explanation: 'The Ventromedial PFC (VMPFC) integrates your values with your actions, maintaining personality consistency and ensuring behavior aligns with your core identity. Damage here causes "you\'re no longer yourself" - the Phineas Gage effect.'
+                        },
+                        {
+                            question: 'After how long does chronic stress begin causing measurable brain damage?',
+                            options: [
+                                '2-4 weeks',
+                                '6 months',
+                                '2-3 years',
+                                '10+ years'
+                            ],
+                            correct: 1,
+                            explanation: 'Measurable PFC and hippocampal atrophy appears after approximately 6 months of chronic uncontrollable stress. This is why early intervention is critical - catch it within the first year and damage is more likely to be reversible.'
+                        }
+                    ]
+                },
+                {
+                    id: 'roi-calculator',
+                    title: 'Financial Impact Analysis',
+                    subtitle: 'Interactive ROI Calculator',
+                    category: 'Part II: The Solution',
+                    order: 2,
+                    learningObjectives: [
+                        'Calculate the true cost of destroyed cognitive capital',
+                        'Understand how FHRI affects bond ratings and borrowing costs',
+                        'Compare extractive vs. Federation model financial outcomes'
+                    ],
+                    body: `
+                        <p>The financial case for Federation architecture rests on a biological reality that traditional accounting ignores: <strong>Professional expertise depends on intact prefrontal cortex function and sustained temporal coherence (ATCF).</strong></p>
+
+                        <p>When institutions damage this substrate through chronic stress, they trigger a cascade: cognitive capacity degrades → performance deteriorates → ATCF collapses → professional exits → replacement costs compound.</p>
+
+                        <p>Use the calculator below to see the financial impact for your institution.</p>
+                    `,
+                    hasCalculator: true,
+                    keyTakeaways: [
+                        'Destroying cognitive capital is catastrophically more expensive than protecting it',
+                        'FHRI bond rating effects often exceed direct operational savings',
+                        'Break-even typically occurs within 2-3 years',
+                        'ROI compounds over time as cognitive capital is preserved rather than destroyed',
+                        'This is rational asset management, not altruistic spending'
+                    ]
+                }
+            ],
+            glossary: [
+                {
+                    term: 'atcf',
+                    display: 'ATCF (Adaptive Temporal Coherence Function)',
+                    definition: 'The measurable capacity to maintain identity across time, integrate present experience, orient toward futures, and examine one\'s own patterns. ATCF is the biological substrate of professional competence, implemented through predictive processing mechanisms requiring intact PFC and hippocampal function.'
+                },
+                {
+                    term: 'pfc',
+                    display: 'Prefrontal Cortex (PFC)',
+                    definition: 'The front-most part of the brain, responsible for executive function, planning, impulse control, value integration, and personality maintenance. The PFC is the "CEO" of the brain - it makes us capable of acting according to our values rather than just reacting to immediate stimuli.'
+                },
+                {
+                    term: 'cortisol',
+                    display: 'Cortisol',
+                    definition: 'The primary human stress hormone. In acute doses (minutes to hours), cortisol is adaptive - it mobilizes energy and enhances memory. In chronic elevation (weeks to months), cortisol becomes neurotoxic, directly damaging neurons in the PFC and hippocampus.'
+                },
+                {
+                    term: 'fhri',
+                    display: 'FHRI (Federation Health & Retention Index)',
+                    definition: 'A composite score (0-100) measuring institutional workforce health based on turnover rates, Conscience Gate activations, quality metrics, and staff satisfaction. FHRI is linked to bond ratings, making workforce ATCF damage fiscally visible and costly in real-time.'
+                },
+                {
+                    term: 'moral-injury',
+                    display: 'Moral Injury',
+                    definition: 'Psychological harm from perpetrating, witnessing, or failing to prevent acts that deeply violate one\'s moral values. Unlike regular trauma (external threat), moral injury involves forced violation of identity predictions, causing more severe and lasting damage than fear-based PTSD.'
+                }
+            ]
+        };
+
+        // ==================== STATE MANAGEMENT ====================
+        let currentSection = 'executive-summary';
+        let progress = JSON.parse(localStorage.getItem('app-progress')) || {};
+        let quizState = {};
+
+        // ==================== INITIALIZATION ====================
+        window.addEventListener('DOMContentLoaded', () => {
+            renderNavigation();
+            loadSection(currentSection);
+            updateProgress();
+        });
+
+        // ==================== NAVIGATION ====================
+        function renderNavigation() {
+            const nav = document.getElementById('navigation');
+            nav.innerHTML = contentData.sections.map((section, index) => {
+                const completed = progress[section.id]?.completed;
+                const icon = completed ? '✓' : '○';
+                const classes = ['nav-link'];
+                if (section.id === currentSection) classes.push('active');
+                if (completed) classes.push('completed');
+                
+                return `
+                    <li class="nav-item">
+                        <a href="#${section.id}" class="${classes.join(' ')}" onclick="navigateToSection('${section.id}'); return false;">
+                            <span class="nav-icon">${icon}</span>
+                            <span>${section.title}</span>
+                        </a>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        function navigateToSection(sectionId) {
+            currentSection = sectionId;
+            loadSection(sectionId);
+            renderNavigation();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== CONTENT LOADING ====================
+        function loadSection(sectionId) {
+            const section = contentData.sections.find(s => s.id === sectionId);
+            if (!section) return;
+
+            let html = `
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-category">
+                            📘 ${section.category}
+                        </div>
+                        <h1 class="section-title">${section.title}</h1>
+                        ${section.subtitle ? `<p class="section-subtitle">${section.subtitle}</p>` : ''}
+                    </div>
+
+                    ${section.learningObjectives ? `
+                        <div class="info-box">
+                            <div class="info-box-title">💡 Learning Objectives</div>
+                            <ul>
+                                ${section.learningObjectives.map(obj => `<li>${obj}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    <div class="content-body">
+                        ${section.body}
+                    </div>
+
+                    ${section.hasCalculator ? renderCalculator() : ''}
+
+                    ${section.keyTakeaways ? `
+                        <div class="info-box success mt-4">
+                            <div class="info-box-title">🎯 Key Takeaways</div>
+                            <ul>
+                                ${section.keyTakeaways.map(takeaway => `<li>${takeaway}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    ${section.hasQuiz ? renderQuizButton(section.id) : ''}
+                </div>
+            `;
+
+            document.getElementById('content-section').innerHTML = html;
+            attachGlossaryListeners();
+        }
+
+        // ==================== ROI CALCULATOR ====================
+        function renderCalculator() {
+            return `
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <div class="calculator-icon">🧮</div>
+                        <div>
+                            <h3>Interactive ROI Calculator</h3>
+                            <p>Calculate the financial impact of Federation implementation for your institution</p>
+                        </div>
+                    </div>
+
+                    <form class="calculator-form" onsubmit="calculateROI(event)">
+                        <div class="form-group">
+                            <label>Institution Type</label>
+                            <select id="institutionType">
+                                <option value="hospital">Hospital / Nursing Home</option>
+                                <option value="school">School District</option>
+                                <option value="agency">Government Agency</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current Staff Count</label>
+                            <input type="number" id="currentStaff" value="30" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current Turnover Rate (%)</label>
+                            <input type="number" id="turnoverRate" value="60" min="0" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Total Borrowing Amount ($)</label>
+                            <input type="number" id="borrowingAmount" value="10000000" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Average Staff Salary ($)</label>
+                            <input type="number" id="avgSalary" value="30000" min="0" required>
+                        </div>
+
+                        <button type="submit" class="btn-calculate">
+                            🧮 Calculate Financial Impact
+                        </button>
+                    </form>
+
+                    <div id="calculator-results"></div>
+                </div>
+            `;
+        }
+
+        function calculateROI(event) {
+            event.preventDefault();
+
+            const currentStaff = parseInt(document.getElementById('currentStaff').value);
+            const turnoverRate = parseInt(document.getElementById('turnoverRate').value);
+            const borrowingAmount = parseInt(document.getElementById('borrowingAmount').value);
+            const avgSalary = parseInt(document.getElementById('avgSalary').value);
+
+            // Current model calculations
+            const currentTurnoverCount = Math.round(currentStaff * (turnoverRate / 100));
+            const replacementCost = 8000;
+            const currentTurnoverCost = currentTurnoverCount * replacementCost;
+            const currentQualityPenalties = 50000;
+            const currentFHRI = Math.max(10, 100 - turnoverRate);
+            const currentBondPremium = currentFHRI < 60 ? 120 : currentFHRI < 80 ? 60 : 30;
+            const currentBondCost = (borrowingAmount * currentBondPremium) / 10000;
+            const currentTotalCost = currentTurnoverCost + currentQualityPenalties + currentBondCost;
+
+            // Federation model calculations
+            const staffIncrease = Math.round(currentStaff * 0.2);
+            const federationTurnoverRate = 20;
+            const federationTurnoverCount = Math.round((currentStaff + staffIncrease) * 0.2);
+            const federationTurnoverCost = federationTurnoverCount * replacementCost;
+            const federationQualityBonus = 50000;
+            const federationFHRI = 87;
+            const federationBondDiscount = -30;
+            const federationBondSavings = (borrowingAmount * Math.abs(federationBondDiscount)) / 10000;
+            const federationStaffingCost = staffIncrease * avgSalary;
+            const federationTotalCost = 
+                federationStaffingCost + 
+                federationTurnoverCost - 
+                federationQualityBonus - 
+                federationBondSavings;
+
+            const netSavings = currentTotalCost - federationTotalCost;
+            const roi = ((netSavings / federationStaffingCost) * 100).toFixed(1);
+            const breakEven = (federationStaffingCost / (netSavings / 12)).toFixed(1);
+
+            const resultsHTML = `
+                <div class="results-grid">
+                    <div class="result-card danger">
+                        <div class="result-label">Current Annual Cost</div>
+                        <div class="result-value">$${currentTotalCost.toLocaleString()}</div>
+                        <div class="result-meta">FHRI: ${currentFHRI}</div>
+                    </div>
+
+                    <div class="result-card primary">
+                        <div class="result-label">Federation Annual Cost</div>
+                        <div class="result-value">$${federationTotalCost.toLocaleString()}</div>
+                        <div class="result-meta">FHRI: ${federationFHRI}</div>
+                    </div>
+
+                    <div class="result-card success">
+                        <div class="result-label">Annual Savings</div>
+                        <div class="result-value">$${netSavings.toLocaleString()}</div>
+                        <div class="result-meta">ROI: ${roi}%</div>
+                    </div>
+                </div>
+
+                <div class="breakdown-section">
+                    <h3 class="breakdown-title">📊 Detailed Financial Breakdown</h3>
+                    <div class="breakdown-grid">
+                        <div class="breakdown-column">
+                            <h4 style="color: var(--danger)">Current Extractive Model</h4>
+                            <div class="breakdown-item">
+                                <span>Staff Turnover (${currentTurnoverCount} people):</span>
+                                <span>$${currentTurnoverCost.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Quality Penalties:</span>
+                                <span>$${currentQualityPenalties.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bond Cost Premium:</span>
+                                <span>$${currentBondCost.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Total Annual Cost:</span>
+                                <span style="color: var(--danger)">$${currentTotalCost.toLocaleString()}</span>
+                            </div>
+                        </div>
+
+                        <div class="breakdown-column">
+                            <h4 style="color: var(--primary)">Federation Model</h4>
+                            <div class="breakdown-item">
+                                <span>Additional Staffing (+${staffIncrease} people):</span>
+                                <span>$${federationStaffingCost.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Reduced Turnover (${federationTurnoverCount} people):</span>
+                                <span>$${federationTurnoverCost.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Quality Bonuses:</span>
+                                <span style="color: var(--accent)">-$${federationQualityBonus.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bond Cost Savings:</span>
+                                <span style="color: var(--accent)">-$${federationBondSavings.toLocaleString()}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Total Annual Cost:</span>
+                                <span style="color: var(--primary)">$${federationTotalCost.toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box success mt-4">
+                        <div class="info-box-title">💰 Key Financial Insights</div>
+                        <ul>
+                            <li><strong>Net Annual Savings:</strong> $${netSavings.toLocaleString()}</li>
+                            <li><strong>Return on Investment:</strong> ${roi}% annually</li>
+                            <li><strong>Break-even Period:</strong> ${breakEven} months</li>
+                            <li><strong>FHRI Improvement:</strong> ${currentFHRI} → ${federationFHRI} (+${federationFHRI - currentFHRI} points)</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('calculator-results').innerHTML = resultsHTML;
+            document.getElementById('calculator-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // ==================== QUIZ SYSTEM ====================
+        function renderQuizButton(sectionId) {
+            return `
+                <div class="mt-4 text-center">
+                    <button class="btn btn-primary" onclick="startQuiz('${sectionId}')">
+                        ✓ Test Your Understanding
+                    </button>
+                </div>
+            `;
+        }
+
+        function startQuiz(sectionId) {
+            const section = contentData.sections.find(s => s.id === sectionId);
+            if (!section || !section.quiz) return;
+
+            quizState = {
+                sectionId: sectionId,
+                questions: section.quiz,
+                currentQuestion: 0,
+                answers: [],
+                showingExplanation: false
+            };
+
+            renderQuiz();
+        }
+
+        function renderQuiz() {
+            const { questions, currentQuestion, answers } = quizState;
+            const question = questions[currentQuestion];
+            const answered = answers[currentQuestion] !== undefined;
+
+            const quizHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div class="quiz-title">Test Your Understanding</div>
+                        <div class="quiz-progress">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-text">${question.question}</div>
+                        ${question.options.map((option, index) => {
+                            let optionClass = 'option';
+                            if (answered) {
+                                if (index === question.correct) optionClass += ' correct';
+                                else if (index === answers[currentQuestion]) optionClass += ' incorrect';
+                            } else if (index === answers[currentQuestion]) {
+                                optionClass += ' selected';
+                            }
+                            
+                            return `
+                                <div class="${optionClass}" onclick="selectAnswer(${index})">
+                                    ${option}
+                                </div>
+                            `;
+                        }).join('')}
+
+                        ${answered && quizState.showingExplanation ? `
+                            <div class="explanation">
+                                <strong>Explanation:</strong> ${question.explanation}
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="quiz-actions">
+                        ${!answered ? `
+                            <button class="btn btn-primary" onclick="submitAnswer()" ${answers[currentQuestion] === undefined ? 'disabled' : ''}>
+                                Submit Answer
+                            </button>
+                        ` : `
+                            ${currentQuestion < questions.length - 1 ? `
+                                <button class="btn btn-primary" onclick="nextQuestion()">
+                                    Next Question →
+                                </button>
+                            ` : `
+                                <button class="btn btn-primary" onclick="finishQuiz()">
+                                    See Results
+                                </button>
+                            `}
+                        `}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('content-section').innerHTML = quizHTML;
+        }
+
+        function selectAnswer(index) {
+            if (quizState.showingExplanation) return;
+            quizState.answers[quizState.currentQuestion] = index;
+            renderQuiz();
+        }
+
+        function submitAnswer() {
+            quizState.showingExplanation = true;
+            renderQuiz();
+        }
+
+        function nextQuestion() {
+            quizState.currentQuestion++;
+            quizState.showingExplanation = false;
+            renderQuiz();
+        }
+
+        function finishQuiz() {
+            const { questions, answers } = quizState;
+            const correctCount = answers.filter((answer, index) => answer === questions[index].correct).length;
+            const score = Math.round((correctCount / questions.length) * 100);
+            const passed = score >= 70;
+
+            if (passed) {
+                markSectionComplete(quizState.sectionId);
+            }
+
+            const resultsHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-score" style="background: ${passed ? 'var(--accent)' : 'var(--warning)'}">
+                        <h3>Quiz Complete!</h3>
+                        <div style="font-size: 3rem; margin: 1rem 0">${score}%</div>
+                        <p>${correctCount} out of ${questions.length} correct</p>
+                        ${passed ? `
+                            <p style="margin-top: 1rem">✓ Section marked complete!</p>
+                        ` : `
+                            <p style="margin-top: 1rem">Review the material and try again to pass (70% required)</p>
+                        `}
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem">
+                        <button class="btn btn-primary" onclick="loadSection('${quizState.sectionId}')">
+                            Return to Section
+                        </button>
+                        ${!passed ? `
+                            <button class="btn btn-secondary" onclick="startQuiz('${quizState.sectionId}')" style="margin-left: 1rem">
+                                Retry Quiz
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('content-section').innerHTML = resultsHTML;
+        }
+
+        // ==================== PROGRESS TRACKING ====================
+        function markSectionComplete(sectionId) {
+            progress[sectionId] = {
+                completed: true,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('app-progress', JSON.stringify(progress));
+            updateProgress();
+            renderNavigation();
+        }
+
+        function updateProgress() {
+            const completed = Object.keys(progress).filter(key => progress[key].completed).length;
+            const total = contentData.sections.length;
+            const percentage = Math.round((completed / total) * 100);
+
+            document.getElementById('progress-completed').textContent = completed;
+            document.getElementById('progress-total').textContent = total;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+        }
+
+        // ==================== GLOSSARY ====================
+        function attachGlossaryListeners() {
+            document.querySelectorAll('.glossary-term').forEach(term => {
+                term.addEventListener('click', function() {
+                    const termKey = this.getAttribute('data-term');
+                    showGlossaryTerm(termKey);
+                });
+            });
+        }
+
+        function showGlossaryTerm(termKey) {
+            const term = contentData.glossary.find(g => g.term === termKey);
+            if (!term) return;
+
+            alert(`${term.display}\n\n${term.definition}`);
+        }
+
+        function openGlossary() {
+            const glossaryHTML = contentData.glossary.map(term => `
+                <div class="glossary-entry">
+                    <div class="glossary-entry-term">${term.display}</div>
+                    <div class="glossary-entry-def">${term.definition}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('glossary-content').innerHTML = glossaryHTML;
+            document.getElementById('glossaryModal').classList.add('active');
+        }
+
+        function closeGlossary() {
+            document.getElementById('glossaryModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('glossaryModal').addEventListener('click', function(e) {
+            if (e.target === this) closeGlossary();
+        });
+
+        // ==================== COMPARISON MODE ====================
+        function toggleComparison() {
+            alert('Comparison mode will be available once Version 2 (Public/Organizing) is deployed. For now, this demonstrates the feature placeholder.');
+        }
+    </script>
+
 </body>
 </html>
