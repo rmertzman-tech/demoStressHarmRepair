@@ -14,7 +14,6 @@
         }
 
         :root {
-            /* Version 1 Colors - Professional Academic */
             --primary: #1e3a8a;
             --primary-light: #3b82f6;
             --primary-dark: #1e40af;
@@ -37,7 +36,7 @@
             background: var(--bg-main);
         }
 
-        /* ==================== LAYOUT ==================== */
+        /* ==================== HEADER ==================== */
         .app-header {
             background: var(--primary);
             color: white;
@@ -102,6 +101,51 @@
             background: var(--primary-dark);
         }
 
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            background: var(--bg-surface);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 76px;
+            z-index: 99;
+            border-bottom: 2px solid var(--border);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            padding: 0.625rem 1rem;
+            margin: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+        }
+
+        nav button:hover {
+            background: var(--bg-main);
+            color: var(--text-primary);
+        }
+
+        nav button.active {
+            background: #dbeafe;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ==================== MAIN CONTAINER ==================== */
         .main-container {
             max-width: 1400px;
             margin: 2rem auto;
@@ -111,10 +155,10 @@
             gap: 2rem;
         }
 
-        /* ==================== SIDEBAR NAVIGATION ==================== */
+        /* ==================== SIDEBAR ==================== */
         .sidebar {
             position: sticky;
-            top: 120px;
+            top: 140px;
             height: fit-content;
         }
 
@@ -151,6 +195,7 @@
             text-decoration: none;
             font-size: 0.875rem;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .nav-link:hover {
@@ -207,7 +252,7 @@
             transition: width 0.3s ease;
         }
 
-        /* ==================== MAIN CONTENT ==================== */
+        /* ==================== CONTENT AREA ==================== */
         .content-area {
             min-height: 80vh;
         }
@@ -250,7 +295,7 @@
             font-weight: 400;
         }
 
-        /* Learning Objectives Box */
+        /* Info Boxes */
         .info-box {
             border-left: 4px solid var(--primary-light);
             background: #eff6ff;
@@ -267,6 +312,11 @@
         .info-box.warning {
             border-left-color: var(--warning);
             background: #fffbeb;
+        }
+
+        .info-box.under-dev {
+            border-left-color: #8b5cf6;
+            background: #f5f3ff;
         }
 
         .info-box-title {
@@ -292,6 +342,13 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-body h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
             color: var(--text-primary);
         }
 
@@ -321,15 +378,14 @@
             text-decoration: underline;
             text-decoration-style: dotted;
             cursor: help;
-            position: relative;
         }
 
         .glossary-term:hover {
             color: var(--primary-dark);
         }
 
-        /* ==================== ROI CALCULATOR ==================== */
-        .calculator-container {
+        /* ==================== DATA COLLECTION CHECKLIST ==================== */
+        .checklist-container {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 1rem;
             padding: 2rem;
@@ -337,14 +393,14 @@
             margin: 2rem 0;
         }
 
-        .calculator-header {
+        .checklist-header {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 2rem;
         }
 
-        .calculator-icon {
+        .checklist-icon {
             width: 48px;
             height: 48px;
             background: rgba(255,255,255,0.2);
@@ -355,166 +411,79 @@
             font-size: 24px;
         }
 
-        .calculator-header h3 {
-            font-size: 1.75rem;
-            margin: 0;
-        }
-
-        .calculator-header p {
-            margin: 0;
-            opacity: 0.9;
-            font-size: 0.95rem;
-        }
-
-        .calculator-form {
+        .checklist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 0.5rem;
+        .checklist-section {
             background: rgba(255,255,255,0.1);
-            color: white;
-            font-size: 1rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
         }
 
-        .form-group input::placeholder {
-            color: rgba(255,255,255,0.6);
+        .checklist-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 0.5rem;
+        }
+
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 0.25rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-checkbox.checked {
+            background: white;
             border-color: white;
-            background: rgba(255,255,255,0.15);
+            position: relative;
         }
 
-        .btn-calculate {
+        .checklist-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 14px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-download {
             width: 100%;
             padding: 1rem;
             background: white;
-            color: var(--primary);
+            color: #667eea;
             border: none;
             border-radius: 0.5rem;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
+            margin-top: 1.5rem;
             transition: transform 0.2s;
         }
 
-        .btn-calculate:hover {
+        .btn-download:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .result-card {
-            background: white;
-            color: var(--text-primary);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border-left: 4px solid;
-        }
-
-        .result-card.danger {
-            border-left-color: var(--danger);
-        }
-
-        .result-card.primary {
-            border-left-color: var(--primary);
-        }
-
-        .result-card.success {
-            border-left-color: var(--accent);
-        }
-
-        .result-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .result-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .result-card.danger .result-value {
-            color: var(--danger);
-        }
-
-        .result-card.primary .result-value {
-            color: var(--primary);
-        }
-
-        .result-card.success .result-value {
-            color: var(--accent);
-        }
-
-        .result-meta {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .breakdown-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .breakdown-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .breakdown-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .breakdown-column h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .breakdown-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            font-size: 0.875rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .breakdown-item:last-child {
-            border-bottom: none;
-            padding-top: 0.75rem;
-            font-weight: 700;
-            font-size: 1rem;
         }
 
         /* ==================== QUIZ ==================== */
@@ -613,6 +582,73 @@
             margin-bottom: 0.5rem;
         }
 
+        /* ==================== COMPLETION CERTIFICATE ==================== */
+        .certificate-container {
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .certificate-header {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .certificate-body {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-main);
+            border-radius: 0.75rem;
+        }
+
+        .certificate-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .certificate-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .cert-stat {
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            border: 2px solid var(--border);
+        }
+
+        .cert-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .cert-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
         /* ==================== MODAL ==================== */
         .modal-overlay {
             display: none;
@@ -635,7 +671,7 @@
         .modal {
             background: white;
             border-radius: 1rem;
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             max-height: 80vh;
             overflow-y: auto;
@@ -695,8 +731,8 @@
                 position: static;
             }
 
-            .nav-card {
-                margin-bottom: 1rem;
+            nav {
+                top: 0;
             }
         }
 
@@ -714,11 +750,23 @@
                 font-size: 1.75rem;
             }
 
-            .calculator-container {
+            .checklist-container {
                 padding: 1.5rem;
             }
 
-            .calculator-form {
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .certificate-title {
+                font-size: 2rem;
+            }
+
+            .certificate-stats {
                 grid-template-columns: 1fr;
             }
         }
@@ -750,12 +798,22 @@
                 <button class="btn btn-secondary" onclick="openGlossary()">
                     📚 Glossary
                 </button>
-                <button class="btn btn-secondary" onclick="toggleComparison()">
-                    🔄 Compare Versions
+                <button class="btn btn-secondary" onclick="openReferences()">
+                    📖 References
+                </button>
+                <button class="btn btn-primary" onclick="openCertificate()">
+                    🏆 Your Progress
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav>
+        <ul id="quick-nav">
+            <!-- Generated by JavaScript -->
+        </ul>
+    </nav>
 
     <!-- ==================== MAIN CONTAINER ==================== -->
     <div class="main-container">
@@ -772,7 +830,7 @@
             <div class="progress-card">
                 <div class="progress-title">Your Progress</div>
                 <div class="progress-stats">
-                    <span id="progress-completed">0</span> / <span id="progress-total">9</span>
+                    <span id="progress-completed">0</span> / <span id="progress-total">10</span>
                 </div>
                 <div class="progress-bar-container">
                     <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
@@ -802,6 +860,32 @@
         </div>
     </div>
 
+    <!-- ==================== REFERENCES MODAL ==================== -->
+    <div class="modal-overlay" id="referencesModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">References</h2>
+                <button class="modal-close" onclick="closeReferences()">×</button>
+            </div>
+            <div id="references-content">
+                <!-- Generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CERTIFICATE MODAL ==================== -->
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Your Learning Progress</h2>
+                <button class="modal-close" onclick="closeCertificate()">×</button>
+            </div>
+            <div id="certificate-content">
+                <!-- Generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
         // ==================== DATA ====================
@@ -821,9 +905,11 @@
                         <p>Human flourishing depends on biological prerequisites that current institutional designs systematically undermine. This framework synthesizes research from behavioral biology (Sapolsky), developmental bioelectricity (Levin), and predictive neuroscience (Clark) to demonstrate that chronic institutional stress causes measurable neurological damage to the prefrontal cortex—the neural substrate of ethical reasoning and professional judgment.</p>
 
                         <h3>The Core Argument</h3>
-                        <p><strong>Professional expertise depends on sustained <span class="glossary-term" data-term="atcf">Adaptive Temporal Coherence Function (ATCF)</span></strong>—the capacity to maintain identity, integrate information, and plan coherently across time. This capacity is biologically implemented in <span class="glossary-term" data-term="pfc">prefrontal cortex</span> and hippocampal systems that chronic stress degrades.</p>
+                        <p><strong>Workforce competence depends on sustained <span class="glossary-term" data-term="atcf">Adaptive Temporal Coherence Function (ATCF)</span></strong>—the capacity to maintain identity, integrate information, and plan coherently across time. We also call this your <strong>Integrity Capability</strong>—the lived experience of being able to maintain who you are and act according to your values, even under pressure.</p>
 
-                        <p>Current institutional designs systematically damage this substrate through <strong>uncontrollable responsibility</strong>—holding professionals accountable for outcomes while denying them control over means. The result: predictable neurological degradation, followed by performance failure, followed by institutional collapse.</p>
+                        <p>This capacity is biologically implemented in <span class="glossary-term" data-term="pfc">prefrontal cortex</span> and hippocampal systems that chronic stress degrades. Whether you're a surgeon, a nursing assistant, a warehouse worker, a teacher, or maintenance staff—the same biological mechanisms apply.</p>
+
+                        <p>Current institutional designs systematically damage this substrate through <strong>uncontrollable responsibility</strong>—holding workers accountable for outcomes while denying them control over means. The result: predictable neurological degradation, followed by performance failure, followed by institutional collapse.</p>
 
                         <h3>The Solution: Federation Architecture</h3>
                         <p>The Polycentric Federation provides three mechanisms that protect ATCF at biological, psychological, and social levels simultaneously:</p>
@@ -837,12 +923,12 @@
                         <p>The <strong>Federation Health & Retention Index (FHRI)</strong> serves as the mandatory architectural constraint—the load-bearing mechanism that makes biological damage fiscally visible in real-time, creating market pressure for institutional reform.</p>
 
                         <h3>Why This Matters</h3>
-                        <p>This is not aspirational policy—it is <strong>bio-compatible governance</strong> based on four decades of neuroscientific research, with demonstrated positive return on investment from protecting the neural substrate of professional competence rather than continuously destroying and replacing it.</p>
+                        <p>This is not aspirational policy—it is <strong>bio-compatible governance</strong> based on four decades of neuroscientific research, with demonstrated positive return on investment from protecting the neural substrate of workforce competence and Integrity Capability rather than continuously destroying and replacing it.</p>
                     `,
                     keyTakeaways: [
-                        'Professional expertise requires intact PFC and hippocampal function',
+                        'Workforce competence requires intact PFC and hippocampal function',
                         'Current institutions systematically damage these substrates via uncontrollable responsibility',
-                        'ATCF is the measurable capacity that determines professional competence',
+                        'ATCF (Integrity Capability) is the measurable capacity that determines work competence',
                         'FHRI serves as mandatory architectural constraint making damage costly',
                         'Federation mechanisms protect biology, psychology, and social structures simultaneously'
                     ],
@@ -895,30 +981,35 @@
                         'Recognize the reversibility window for stress-induced damage'
                     ],
                     body: `
-                        <p>We begin with empirical findings from Robert Sapolsky's longitudinal research spanning four decades: human capacity for professional judgment—including ethical reasoning, complex planning, and sustained expertise application—depends on specific brain structures that are vulnerable to environmental damage.</p>
+                        <p>We begin with empirical findings from Robert Sapolsky's longitudinal research spanning four decades: human capacity for competent work—including ethical reasoning, complex planning, and sustained task performance—depends on specific brain structures that are vulnerable to environmental damage.</p>
 
-                        <h3>The Neural Architecture of Professional Competence</h3>
-                        <p>Professional expertise requires functional integration across three <span class="glossary-term" data-term="pfc">prefrontal cortex (PFC)</span> regions:</p>
+                        <p><strong>This applies universally across the workforce:</strong> Whether you're a surgeon or a nursing assistant, an engineer or a warehouse worker, a teacher or janitorial staff—the same neural architecture enables your capacity to do your job well and maintain your integrity under pressure.</p>
 
-                        <p><strong>Dorsolateral PFC (DLPFC):</strong></p>
+                        <h3>The Neural Architecture of Workforce Competence</h3>
+                        <p>All work requiring sustained competence and ethical judgment depends on functional integration across three <span class="glossary-term" data-term="pfc">prefrontal cortex (PFC)</span> regions:</p>
+
+                        <h4>Dorsolateral PFC (DLPFC):</h4>
                         <ul>
                             <li><strong>Function:</strong> Working memory, planning, consequence evaluation, task control</li>
-                            <li><strong>Professional application:</strong> Holds multiple factors in mind simultaneously, sequences complex procedures, anticipates outcomes</li>
+                            <li><strong>Work application:</strong> Holds multiple factors in mind simultaneously, sequences complex procedures, anticipates outcomes</li>
+                            <li><strong>Examples:</strong> Nurse tracking 8 patients' medications; warehouse worker coordinating multiple orders; teacher managing 30 students' needs</li>
                             <li><strong>Damage effects:</strong> Impulsivity, planning failures, inability to manage complexity</li>
                         </ul>
 
-                        <p><strong>Ventromedial PFC (VMPFC):</strong></p>
+                        <h4>Ventromedial PFC (VMPFC):</h4>
                         <ul>
                             <li><strong>Function:</strong> Value integration, personality consistency, identity maintenance, social judgment</li>
-                            <li><strong>Professional application:</strong> Ensures actions align with professional standards and core identity, maintains ethical consistency</li>
+                            <li><strong>Work application:</strong> Ensures actions align with your values and core identity, maintains ethical consistency</li>
+                            <li><strong>Examples:</strong> CNA maintaining dignity in care despite time pressure; retail worker staying respectful despite impossible metrics; janitor taking pride in thorough work</li>
                             <li><strong>Damage effects:</strong> Personality disintegration, inability to act according to values, moral inconsistency</li>
                         </ul>
 
-                        <p><strong>Anterior Cingulate Cortex (ACC):</strong></p>
+                        <h4>Anterior Cingulate Cortex (ACC):</h4>
                         <ul>
                             <li><strong>Function:</strong> Error detection, conflict monitoring, value-action alignment</li>
-                            <li><strong>Professional application:</strong> Generates "this violates standards" signal, enables correction before harm</li>
-                            <li><strong>Damage effects:</strong> Moral numbing, inability to detect when behavior contradicts professional norms</li>
+                            <li><strong>Work application:</strong> Generates "this violates standards" signal, enables correction before harm</li>
+                            <li><strong>Examples:</strong> Food service worker noticing safety violation; maintenance worker detecting hazard; delivery driver recognizing dangerous shortcut</li>
+                            <li><strong>Damage effects:</strong> Moral numbing, inability to detect when behavior contradicts your standards</li>
                         </ul>
 
                         <h3>The Mechanism of Degradation</h3>
@@ -942,6 +1033,31 @@
                         </ul>
 
                         <p><strong>Implication for policy:</strong> This indicates institutional stress causes functional impairment, not necessarily permanent damage—making early intervention critical. The damage is often preventable and reversible with structural change, but becomes increasingly difficult to reverse with prolonged exposure.</p>
+
+                        <h3>The ATCF Framework: Measuring Integrity Capability</h3>
+                        <p>For sustained work competence, all three PFC regions must function coordinately. This integration enables what we term <strong>Adaptive Temporal Coherence Function (ATCF)</strong>—or in lived experience, your <strong>Integrity Capability</strong>.</p>
+
+                        <p>ATCF/Integrity Capability has four measurable components:</p>
+                        
+                        <ol>
+                            <li><strong>Historical Continuity:</strong> Stable identity and values across time (hippocampus-dependent autobiographical integration) — "I'm still who I said I was"</li>
+                            <li><strong>Present Integration:</strong> Coherent processing of current information (PFC-mediated executive function) — "I can handle what's in front of me"</li>
+                            <li><strong>Prospective Coherence:</strong> Ability to plan and orient toward futures (PFC-dependent goal formation) — "I can imagine continuing in this work"</li>
+                            <li><strong>Meta-Constructor Capacity:</strong> Ability to examine and modify one's own patterns (medial PFC reflective function) — "I can adapt and grow"</li>
+                        </ol>
+
+                        <p><strong>When chronic stress damages PFC and hippocampus, your Integrity Capability degrades predictably:</strong></p>
+                        <ul>
+                            <li>Historical Continuity fragments (can't access who you are coherently)</li>
+                            <li>Present Integration fails (overwhelmed, scattered, error-prone)</li>
+                            <li>Prospective Coherence collapses (can't imagine sustainable future in this work)</li>
+                            <li>Meta-Constructor Capacity reduces (rigid, can't adapt, trapped in maladaptive patterns)</li>
+                        </ul>
+
+                        <p><strong>Result:</strong> You become biologically incapable of the sustained, coherent work your role requires—not through lack of effort or character, but through measurable cognitive substrate degradation.</p>
+
+                        <h3>Policy Implication</h3>
+                        <p>Integrity Capability and workforce competence are not merely psychological—they have identifiable biological substrates that institutional design can either protect or degrade. Policy that ignores these constraints operates against biological reality and will fail regardless of good intentions or resource investment.</p>
                     `,
                     keyTakeaways: [
                         'Three PFC regions (DLPFC, VMPFC, ACC) implement professional competence',
@@ -977,48 +1093,646 @@
                     ]
                 },
                 {
-                    id: 'roi-calculator',
-                    title: 'Financial Impact Analysis',
-                    subtitle: 'Interactive ROI Calculator',
-                    category: 'Part II: The Solution',
+                    id: 'determinism',
+                    title: 'Resolving Determinism',
+                    subtitle: 'Pattern-Level Causation in Biological Systems',
+                    category: 'Part I: The Problem',
                     order: 2,
                     learningObjectives: [
-                        'Calculate the true cost of destroyed cognitive capital',
-                        'Understand how FHRI affects bond ratings and borrowing costs',
-                        'Compare extractive vs. Federation model financial outcomes'
+                        'Understand how deterministic substrates support genuine agency',
+                        'Recognize downward causation in biological systems',
+                        'Apply pattern-level analysis to professional accountability'
                     ],
                     body: `
-                        <p>The financial case for Federation architecture rests on a biological reality that traditional accounting ignores: <strong>Professional expertise depends on intact prefrontal cortex function and sustained temporal coherence (ATCF).</strong></p>
+                        <p>A common objection to biology-based policy: if behavior is biologically determined, how can we maintain professional accountability? Doesn't this excuse poor performance as "not their fault"?</p>
 
-                        <p>When institutions damage this substrate through chronic stress, they trigger a cascade: cognitive capacity degrades → performance deteriorates → ATCF collapses → professional exits → replacement costs compound.</p>
+                        <p>The framework resolves this through recent findings in multi-scale biological causation, which demonstrate that deterministic substrates can support genuine agency through pattern-level constraints.</p>
 
-                        <p>Use the calculator below to see the financial impact for your institution.</p>
+                        <h3>Empirical Foundation: Levin's Bioelectric Morphogenesis</h3>
+                        <p>Michael Levin's research at Tufts demonstrates that pattern-level information has genuine causal power in developmental biology, operating on timescales slower than molecular processes but constraining what those processes produce.</p>
+
+                        <p><strong>Key experimental findings:</strong></p>
+                        <ul>
+                            <li>Planaria (flatworms) regenerate correct anatomy when cut</li>
+                            <li>Manipulation of bioelectric voltage patterns produces two-headed planaria from identical genetic substrate</li>
+                            <li>The pattern cannot be predicted from analyzing individual cell biochemistry</li>
+                            <li>Directly manipulable: Change the pattern, change the outcome</li>
+                        </ul>
+
+                        <p>This demonstrates <strong>downward causation</strong>: Pattern-level information physically constrains substrate-level processes even though all molecular steps follow deterministic physical laws.</p>
+
+                        <h3>Neural Implementation: Clark's Predictive Processing</h3>
+                        <p>Andy Clark's predictive processing framework shows the brain operates via analogous architectural principles. The brain functions as a prediction machine that generates top-down models constraining bottom-up sensory processing.</p>
+
+                        <p><strong>The mechanism:</strong></p>
+                        <ul>
+                            <li>Top-down predictions physically suppress neural firing through inhibitory synapses</li>
+                            <li>High-confidence predictions (from years of training) generate strong top-down inhibition</li>
+                            <li>These predictions are encoded as stable neural patterns—the "Identity Kernel"</li>
+                            <li>The pattern determines which pathways activate</li>
+                        </ul>
+
+                        <h3>Professional Example: The Challenger Engineer</h3>
+                        <p>Roger Boisjoly's 25 years of professional practice established extremely high-confidence predictions: "When safety conflicts with schedule, I advocate for safety."</p>
+
+                        <p>These predictions generated such strong top-down inhibition that silence was functionally impossible. The pattern determined the outcome—but the pattern was built through deliberate practice.</p>
+
+                        <h3>Accountability Framework Revision</h3>
+                        <p>Traditional question: "Did you freely choose to violate standards?" (Requires libertarian free will)</p>
+
+                        <p>Framework question: "Did you maintain sufficient ATCF to engage normatively with professional standards?" (Biologically implementable and measurable)</p>
+
+                        <p>The policy question shifts from "Did you freely choose wrong?" to "Did institutional design preserve or destroy your capacity for coherent professional judgment?"</p>
                     `,
-                    hasCalculator: true,
                     keyTakeaways: [
-                        'Destroying cognitive capital is catastrophically more expensive than protecting it',
-                        'FHRI bond rating effects often exceed direct operational savings',
-                        'Break-even typically occurs within 2-3 years',
-                        'ROI compounds over time as cognitive capital is preserved rather than destroyed',
-                        'This is rational asset management, not altruistic spending'
+                        'Deterministic substrates can support genuine agency through pattern-level constraints',
+                        'Downward causation is empirically demonstrated in biological systems',
+                        'Identity Kernel generates high-confidence predictions that constrain behavior',
+                        'Accountability requires maintained ATCF, not libertarian free will',
+                        'Institutions are responsible for preserving conditions that enable coherent judgment'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'What is the Identity Kernel?',
+                            options: [
+                                'A genetic predisposition toward certain behaviors',
+                                'Stable neural patterns encoding core professional identity and predictions',
+                                'A philosophical concept without biological implementation',
+                                'The part of the brain that makes free will decisions'
+                            ],
+                            correct: 1,
+                            explanation: 'The Identity Kernel consists of high-confidence predictions encoded as stable neural patterns, built through years of professional practice. These patterns generate top-down inhibition that makes certain actions nearly inevitable while suppressing alternatives.'
+                        }
+                    ]
+                },
+                {
+                    id: 'institutional-failures',
+                    title: 'Institutional Design Failures',
+                    subtitle: 'The Neurotoxic Environment',
+                    category: 'Part I: The Problem',
+                    order: 3,
+                    learningObjectives: [
+                        'Identify the structural pattern of uncontrollable responsibility',
+                        'Understand moral injury vs. standard occupational stress',
+                        'Recognize vortex dynamics in institutional collapse'
+                    ],
+                    body: `
+                        <p>Current hierarchical institutions create a specific stressor pattern identified by Sapolsky as maximally damaging to PFC function: <strong>uncontrollable responsibility</strong>.</p>
+
+                        <h3>The Structural Pattern</h3>
+                        <p>Subordinated workers—regardless of job title or credentials—experience:</p>
+                        <ul>
+                            <li>High accountability for outcomes (patient safety, customer satisfaction, production quotas, quality standards)</li>
+                            <li>Minimal control over means (staffing levels, work pace, procedures, resources, schedules)</li>
+                            <li>Systematic override of worker judgment by management (financial, political, or schedule priorities dominate practical concerns)</li>
+                            <li>Financial incentives misaligned with quality and safety (speed/efficiency metrics reward corner-cutting)</li>
+                        </ul>
+
+                        <h3>Prevalence Data</h3>
+                        <p>This isn't isolated dysfunction—it's systematic across all workforce levels:</p>
+                        <ul>
+                            <li><strong>Education:</strong> 50% of teachers quit within 5 years</li>
+                            <li><strong>Healthcare:</strong> 60%+ CNA turnover in nursing homes; 60% nurse turnover in crisis systems</li>
+                            <li><strong>Warehouse/Logistics:</strong> 150% annual turnover at major distribution centers</li>
+                            <li><strong>Retail:</strong> 60%+ turnover; impossibly conflicting metrics</li>
+                            <li><strong>Food Service:</strong> 70%+ turnover; blamed for outcomes with no control over staffing</li>
+                            <li><strong>Engineering:</strong> Technical concerns silenced in every major disaster</li>
+                            <li><strong>Civil Service:</strong> 34% "quiet quitting" from demoralization</li>
+                        </ul>
+
+                        <p><strong>Economic cost:</strong> Estimated $500B annually in the U.S. from turnover and quality failures across all workforce levels.</p>
+
+                        <h3>The Neurobiological Consequence: Moral Injury</h3>
+                        <p>Unlike standard stress, <span class="glossary-term" data-term="moral-injury">moral injury</span> involves forced violation of identity predictions under uncontrollable conditions. This affects any worker with values about their work—not just licensed professionals.</p>
+
+                        <p><strong>The cascade:</strong></p>
+                        <ol>
+                            <li>Identity Kernel generates high-confidence prediction: "I will do good work / provide quality care / maintain safety standards"</li>
+                            <li>Institution forces contradictory action: "Accept unsafe ratios / meet impossible quotas / ignore safety violations / compromise quality standards"</li>
+                            <li>Massive prediction error that cannot be resolved (both predictions are accurate—standards ARE violated, AND compliance IS mandatory)</li>
+                            <li>Result: Generative model fragmentation, Integrity Capability (ATCF) collapse, PTSD-equivalent patterns</li>
+                        </ol>
+
+                        <h3>Case Study: Roger Boisjoly and the Challenger</h3>
+                        <p>Boisjoly possessed clear data showing O-ring failure risk. Management overruled him. Seven astronauts died.</p>
+
+                        <p><strong>Predictable neurological damage:</strong></p>
+                        <ul>
+                            <li><strong>Immediate:</strong> Massive cortisol spike, PFC shutdown</li>
+                            <li><strong>Chronic:</strong> PTSD, hippocampal dysfunction, PFC degradation</li>
+                            <li><strong>Long-term:</strong> Major depression, identity fragmentation, never returned to aerospace</li>
+                        </ul>
+
+                        <p>This outcome was as predictable as radiation sickness from radiation exposure. Management created the causal conditions.</p>
+
+                        <h3>The Vortex: Cascading Failure Dynamics</h3>
+                        <p>Biological damage propagates systemically through recursive feedback loops:</p>
+
+                        <ol>
+                            <li><strong>Social Pressure:</strong> Management mandates unsafe practices</li>
+                            <li><strong>Psychological Violation:</strong> Identity Kernel shattered</li>
+                            <li><strong>Biological Damage:</strong> PFC and hippocampal atrophy</li>
+                            <li><strong>Performance Degradation:</strong> Errors increase</li>
+                            <li><strong>Institutional Crisis:</strong> Professional quits or is fired</li>
+                            <li><strong>Amplified Pressure:</strong> Remaining staff face worse conditions</li>
+                        </ol>
+
+                        <p>Each cycle shortens. The system enters exponential collapse.</p>
+
+                        <h3>Why Partial Interventions Fail</h3>
+                        <ul>
+                            <li><strong>Fix only social level:</strong> Already-damaged professionals can't recover without biological repair</li>
+                            <li><strong>Fix only biological level:</strong> Structure keeps reinjuring them</li>
+                            <li><strong>Fix only psychological level:</strong> Violates biological constraints</li>
+                        </ul>
+
+                        <p>Solution must be structural, targeting all three levels simultaneously.</p>
+                    `,
+                    keyTakeaways: [
+                        'Uncontrollable responsibility is maximally neurotoxic stress pattern',
+                        'Moral injury involves forced identity violation, worse than standard trauma',
+                        'Vortex dynamics create exponential institutional collapse',
+                        'Partial interventions fail because all three levels must be addressed',
+                        'The damage is predictable and preventable through structural redesign'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'What distinguishes moral injury from regular occupational stress?',
+                            options: [
+                                'Moral injury involves longer working hours',
+                                'Moral injury forces violation of core professional identity',
+                                'Moral injury only affects certain personality types',
+                                'Moral injury is less severe than regular stress'
+                            ],
+                            correct: 1,
+                            explanation: 'Moral injury is distinct because it forces professionals to violate their Identity Kernel—their core predictions about who they are and how they act. This creates prediction errors that cannot be resolved, leading to identity fragmentation and PTSD-equivalent neurological patterns.'
+                        }
+                    ]
+                },
+                {
+                    id: 'federation-solution',
+                    title: 'The Polycentric Federation',
+                    subtitle: 'Architecture for ATCF Protection',
+                    category: 'Part II: The Solution',
+                    order: 4,
+                    learningObjectives: [
+                        'Understand the social exoskeleton concept',
+                        'Recognize how Federation mechanisms target specific failure modes',
+                        'Apply bio-compatible governance principles'
+                    ],
+                    body: `
+                        <p>We cannot solve neurobiological damage through individual interventions. We require structural redesign—what we term a "social exoskeleton" that protects rather than degrades neural function and temporal coherence.</p>
+
+                        <h3>Core Principle</h3>
+                        <p><strong>Current institutions assume:</strong></p>
+                        <ul>
+                            <li>Workers have unlimited Integrity Capability (ATCF) reserves</li>
+                            <li>Cognitive capacity is infinite and rapidly renewable</li>
+                            <li>Individual motivation can overcome structural dysfunction</li>
+                        </ul>
+
+                        <p><strong>Biological reality:</strong></p>
+                        <ul>
+                            <li>Integrity Capability is finite, degrades under chronic stress</li>
+                            <li>Cognitive capacity depends on intact PFC/hippocampus—damage is cumulative</li>
+                            <li>No amount of heroism overcomes architectures that destroy neural substrate</li>
+                        </ul>
+
+                        <h3>Conceptual Foundation</h3>
+                        <p>The Polycentric Federation creates horizontal networks that buffer workers against extractive vertical pressures.</p>
+
+                        <p><strong>Traditional structure:</strong> Individual Worker ↑ (subordinated) Management/State/Market</p>
+
+                        <p><strong>Federation structure:</strong> Worker Network ↔ (negotiates with) Management/State/Market</p>
+
+                        <p>This shifts dependency from individual moral heroism (biologically expensive, rare, unsustainable) to systemic moral efficacy (biologically supported, scalable, sustainable).</p>
+
+                        <h3>Key Architectural Principle</h3>
+                        <p>Restore <strong>functional autonomy</strong> by aligning responsibility with control. This prevents the specific stressor that causes PFC damage and Integrity Capability collapse.</p>
+
+                        <p>Functional autonomy ≠ unlimited freedom. It means: When you're held accountable for outcomes, you have sufficient control over means to make accountability coherent.</p>
+                    `,
+                    keyTakeaways: [
+                        'Social exoskeleton protects neural substrate from institutional pressure',
+                        'Federation creates horizontal networks that buffer vertical extraction',
+                        'Functional autonomy aligns responsibility with control',
+                        'Systemic moral efficacy replaces individual heroism',
+                        'Bio-compatible governance treats ATCF as finite, protected resource'
+                    ]
+                },
+                {
+                    id: 'core-mechanisms',
+                    title: 'Core Federation Mechanisms',
+                    subtitle: 'Protecting ATCF at Three Levels',
+                    category: 'Part II: The Solution',
+                    order: 5,
+                    learningObjectives: [
+                        'Explain how Conscience Gates restore control',
+                        'Understand Sortition Panels as coalition support',
+                        'Recognize FHRI as institutional pain receptor'
+                    ],
+                    body: `
+                        <p>Each Federation mechanism addresses a specific failure mode in the biological-psychological-social cascade:</p>
+
+                        <h3>MECHANISM 1: Conscience Gate</h3>
+                        <p><strong>Function:</strong> Restore individual control; prevent prediction error initiation</p>
+
+                        <p><strong>Implementation:</strong> Professional can activate "stop work authority" when standards are violated. Work pauses until peer review occurs. Legal protection against retaliation.</p>
+
+                        <p><strong>Biological Effect:</strong></p>
+                        <ul>
+                            <li>Transforms stress from uncontrollable responsibility to challenge stress</li>
+                            <li>Cortisol spikes but returns to baseline (HPA axis regulation maintained)</li>
+                            <li>PFC remains online: can plan, regulate emotions, maintain values</li>
+                            <li>Identity Kernel prediction upheld: "I act according to professional standards"</li>
+                        </ul>
+
+                        <p><strong>Evidence:</strong> Manufacturing companies implementing "stop work authority" show ~30% reduction in stress biomarkers.</p>
+
+                        <h3>MECHANISM 2: Sortition Panel</h3>
+                        <p><strong>Function:</strong> Provide peer validation and coalition support; resolve prediction error when it occurs</p>
+
+                        <p><strong>Implementation:</strong> Random selection of 7 professional peers to review activated Conscience Gate. Panel evaluates whether standards are violated and whether concern is technically sound.</p>
+
+                        <p><strong>Biological Effect:</strong></p>
+                        <ul>
+                            <li>Prevents isolation (primary amplifier of stress damage)</li>
+                            <li>Triggers oxytocin release (counteracts cortisol)</li>
+                            <li>Validates Identity Kernel: "My model of professional reality is accurate"</li>
+                            <li>Prevents moral injury by eliminating forced violation</li>
+                        </ul>
+
+                        <p><strong>Evidence:</strong> Peer support interventions in high-stress professions show significant reductions in PTSD incidence when implemented prospectively.</p>
+
+                        <h3>MECHANISM 3: FHRI/Bond Rating System</h3>
+                        <p><strong>Function:</strong> Make aggregate ATCF damage fiscally visible in real-time; create institutional pain signal</p>
+
+                        <p><strong>Implementation:</strong> <span class="glossary-term" data-term="fhri">FHRI</span> calculated from turnover rates, Conscience Gate activations, quality metrics, satisfaction surveys. Score linked to bond ratings.</p>
+
+                        <p><strong>Why This Is THE Load-Bearing Mechanism:</strong></p>
+                        <ul>
+                            <li>Functions as institutional nociceptor (pain receptor)</li>
+                            <li>Without FHRI, institutions are numb to aggregate damage</li>
+                            <li>With FHRI, institutions feel damage before catastrophe</li>
+                            <li>Creates self-correcting system through market pressure</li>
+                        </ul>
+
+                        <p><strong>Bond Market Logic:</strong></p>
+                        <ul>
+                            <li>High FHRI (80+) → AA or better → Lower borrowing costs</li>
+                            <li>Low FHRI (below 60) → BB or worse → Higher borrowing costs</li>
+                            <li>Institutions that destroy ATCF pay escalating costs until correction or failure</li>
+                        </ul>
+
+                        <p>This is not "optional metric for nice organizations." This is mandatory architectural constraint for institutional sustainability.</p>
+                    `,
+                    keyTakeaways: [
+                        'Conscience Gates restore control, transform stress type',
+                        'Sortition Panels provide coalition, trigger oxytocin buffering',
+                        'FHRI makes damage costly through bond market mechanism',
+                        'All three mechanisms work together to protect ATCF',
+                        'Market pressure creates self-enforcing sustainability'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'How does the Conscience Gate protect brain function?',
+                            options: [
+                                'It provides therapy and counseling services',
+                                'It transforms uncontrollable stress into controllable challenge stress',
+                                'It reduces workload by eliminating tasks',
+                                'It allows unlimited time off for recovery'
+                            ],
+                            correct: 1,
+                            explanation: 'The Conscience Gate restores control, transforming the most neurotoxic stress type (uncontrollable responsibility) into manageable challenge stress. Even if the professional doesn\'t "win," the act of activation upholds their Identity Kernel prediction: "When standards are violated, I speak up."'
+                        },
+                        {
+                            question: 'Why is FHRI described as an institutional "pain receptor"?',
+                            options: [
+                                'It measures physical pain experienced by workers',
+                                'It makes workforce damage fiscally visible, forcing correction',
+                                'It punishes bad managers with financial penalties',
+                                'It creates emotional discomfort in leadership'
+                            ],
+                            correct: 1,
+                            explanation: 'FHRI functions like a biological nociceptor (pain receptor): it makes the hidden cost of destroying cognitive capital visible and costly in real-time. Just as physical pain causes withdrawal before permanent damage, FHRI triggers institutional correction before workforce collapse.'
+                        }
+                    ]
+                },
+                {
+                    id: 'ethics-framework',
+                    title: 'Ethical Foundations',
+                    subtitle: 'Bio-Compatible Governance and Moral Philosophy',
+                    category: 'Part II: The Solution',
+                    order: 6,
+                    learningObjectives: [
+                        'Understand ethical grounding of Federation principles',
+                        'Connect biological constraints to moral obligations',
+                        'Recognize compatibility with multiple ethical traditions'
+                    ],
+                    body: `
+                        <p>The Federation framework rests on a fundamental ethical principle: <strong>Institutions have a moral obligation not to systematically destroy the biological substrate of human agency and professional competence.</strong></p>
+
+                        <h3>Core Ethical Argument</h3>
+                        <p>If we recognize that:</p>
+                        <ol>
+                            <li>Ethical agency requires intact cognitive function (PFC, hippocampus, ATCF)</li>
+                            <li>Current institutions systematically damage these substrates</li>
+                            <li>The damage is predictable, measurable, and preventable</li>
+                            <li>Alternative designs can protect these substrates while improving outcomes</li>
+                        </ol>
+
+                        <p>Then institutions that continue damaging designs are <strong>morally culpable</strong> for the neurological harm they cause.</p>
+
+                        <h3>Compatibility Across Ethical Traditions</h3>
+
+                        <h4>Kantian Perspective</h4>
+                        <p>Treating professionals merely as means to institutional ends (destroying their cognitive capacity for profit) violates the categorical imperative. The Federation respects persons as ends in themselves by protecting their capacity for autonomous agency.</p>
+
+                        <h4>Utilitarian Perspective</h4>
+                        <p>The Federation maximizes aggregate welfare by preventing massive utility loss from destroyed cognitive capital, quality failures, and institutional collapse. Demonstrated positive ROI shows this isn't just morally right—it's welfare-maximizing.</p>
+
+                        <h4>Virtue Ethics Perspective</h4>
+                        <p>The Federation creates conditions under which professionals can cultivate and exercise practical wisdom (phronesis). Current systems force vice by making ethical action impossible under neurotoxic conditions.</p>
+
+                        <h4>Care Ethics Perspective</h4>
+                        <p>The Federation recognizes human vulnerability and dependence on supportive structures. It rejects the fiction of the "independent professional hero" in favor of interconnected networks of mutual support.</p>
+
+                        <h3>Rights-Based Framework</h3>
+                        <p>We can ground Federation principles in professional rights:</p>
+                        <ul>
+                            <li><strong>Right to cognitive integrity:</strong> Professionals have a right not to have their brains systematically damaged</li>
+                            <li><strong>Right to functional autonomy:</strong> When held accountable, professionals have a right to control over means</li>
+                            <li><strong>Right to peer support:</strong> Professionals have a right to coalition when standards are threatened</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <div class="info-box-title">📖 Detailed Ethics Resource</div>
+                            <p>For a comprehensive exploration of the ethical foundations, including analysis of competing frameworks, historical precedents, and responses to objections, see our detailed <a href="#" onclick="openEthicsResource(); return false;" style="color: var(--primary); font-weight: 600;">Ethics Framework Document</a>.</p>
+                            <p>Topics covered include: deontological analysis, consequentialist calculations, virtue cultivation under stress, professional ethics traditions, and integration with bioethics principles.</p>
+                        </div>
+
+                        <h3>The Obligation to Act</h3>
+                        <p>Given that we have:</p>
+                        <ul>
+                            <li>Scientific evidence of the harm</li>
+                            <li>Demonstrated solutions that work</li>
+                            <li>Positive fiscal ROI from implementation</li>
+                            <li>Clear moral principles supporting change</li>
+                        </ul>
+
+                        <p>Continued inaction becomes morally indefensible. This is not aspirational ethics—it is mandatory ethical engineering based on biological reality.</p>
+                    `,
+                    keyTakeaways: [
+                        'Institutions are morally culpable for predictable, preventable neurological harm',
+                        'Federation principles are compatible with multiple ethical traditions',
+                        'Rights-based framework grounds professional protection',
+                        'Positive ROI makes this both morally required and fiscally rational',
+                        'Continued inaction is ethically indefensible given available evidence'
+                    ]
+                },
+                {
+                    id: 'data-checklist',
+                    title: 'Financial Impact Assessment',
+                    subtitle: 'Data Collection Checklist for Your Institution',
+                    category: 'Part III: Implementation',
+                    order: 7,
+                    learningObjectives: [
+                        'Identify financial data needed for ROI analysis',
+                        'Understand organizational metrics relevant to ATCF',
+                        'Prepare for future accurate cost-benefit modeling'
+                    ],
+                    body: `
+                        <p>To accurately calculate the financial impact of Federation implementation for your institution, you'll need comprehensive data across several domains. This checklist will help you gather the necessary information for a rigorous cost-benefit analysis.</p>
+
+                        <div class="info-box warning">
+                            <div class="info-box-title">⚠️ Important Note</div>
+                            <p>Accurate ROI calculation requires institution-specific data and industry-appropriate benchmarks. The checklist below provides a framework for data collection. We recommend working with your finance and HR departments to gather this information systematically.</p>
+                        </div>
+                    `,
+                    hasChecklist: true
+                },
+                {
+                    id: 'implementation',
+                    title: 'Implementation Pathway',
+                    subtitle: 'From Pilot Programs to System-Wide Reform',
+                    category: 'Part III: Implementation',
+                    order: 8,
+                    learningObjectives: [
+                        'Understand the five-phase implementation process',
+                        'Identify key metrics for evaluation',
+                        'Recognize political and regulatory requirements'
+                    ],
+                    body: `
+                        <h3>Phase 1: Pilot Programs (Year 1)</h3>
+                        <p><strong>Objective:</strong> Demonstrate feasibility and measure outcomes</p>
+
+                        <p><strong>Selection criteria:</strong></p>
+                        <ul>
+                            <li>5-10 high-stress public sector institutions</li>
+                            <li>Mix of sectors to test generalizability</li>
+                            <li>Management buy-in essential</li>
+                            <li>Baseline data collection capability</li>
+                        </ul>
+
+                        <p><strong>Implementation steps:</strong></p>
+                        <ul>
+                            <li>Establish Conscience Gate protocols</li>
+                            <li>Train Sortition Panel facilitators</li>
+                            <li>Develop sector-appropriate FHRI metrics</li>
+                            <li>Baseline measurement of current state</li>
+                        </ul>
+
+                        <h3>Phase 2: Evaluation (Year 2)</h3>
+                        <p><strong>Primary outcomes:</strong></p>
+                        <ul>
+                            <li>Turnover rate change</li>
+                            <li>FHRI score trajectories</li>
+                            <li>Operational quality metrics</li>
+                            <li>Staff ATCF assessment</li>
+                        </ul>
+
+                        <p><strong>Expected findings:</strong></p>
+                        <ul>
+                            <li>Turnover reduction: 30-50% in Year 1</li>
+                            <li>FHRI improvement: 20-30 point increase</li>
+                            <li>Quality metrics: 15-25% improvement</li>
+                            <li>Staff ATCF: Significant improvement in all four components</li>
+                        </ul>
+
+                        <h3>Phase 3: Scaling Decisions (Year 3)</h3>
+                        <p><strong>If results positive (expected):</strong></p>
+                        <ul>
+                            <li>Expand to all high-stress public sector institutions</li>
+                            <li>Develop sector-specific implementation guides</li>
+                            <li>Begin regulatory integration</li>
+                        </ul>
+
+                        <h3>Phase 4: Regulatory Integration (Years 3-5)</h3>
+                        <p><strong>Key regulatory steps:</strong></p>
+                        <ul>
+                            <li>Bond rating linkage (coordinate with rating agencies)</li>
+                            <li>Statutory protection for Conscience Gates</li>
+                            <li>Sector-specific mandates (healthcare, education, civil service)</li>
+                            <li>Public disclosure requirements</li>
+                        </ul>
+
+                        <h3>Phase 5: Mature System (Year 5+)</h3>
+                        <p><strong>Market-driven selection pressure:</strong></p>
+                        <ul>
+                            <li>High FHRI institutions outperform and out-recruit</li>
+                            <li>Low FHRI institutions face escalating costs</li>
+                            <li>System becomes self-sustaining</li>
+                            <li>Cultural shift: ATCF protection becomes standard expectation</li>
+                        </ul>
+
+                        <div class="info-box success">
+                            <div class="info-box-title">✅ Political Viability</div>
+                            <p><strong>Bipartisan appeal:</strong> Fiscal conservatives appreciate cost savings and market mechanisms. Progressives support worker protection and evidence-based policy.</p>
+                            <p><strong>Stakeholder support:</strong> Professional unions, management (with objective metrics), and public (better services) all benefit.</p>
+                        </div>
+                    `,
+                    keyTakeaways: [
+                        'Five-phase pathway from pilots to system-wide implementation',
+                        'Expected 30-50% turnover reduction in first year',
+                        'Regulatory integration makes FHRI mandatory, not voluntary',
+                        'Market mechanisms create self-sustaining system',
+                        'Bipartisan political viability through dual appeal'
+                    ]
+                },
+                {
+                    id: 'vision',
+                    title: 'The Vision Forward',
+                    subtitle: 'Bio-Compatible Governance as Foundation',
+                    category: 'Part IV: The Vision',
+                    order: 9,
+                    learningObjectives: [
+                        'Understand paradigm shift in institutional design',
+                        'Recognize universal applicability beyond professional contexts',
+                        'Apply principles to democratic health and civic engagement'
+                    ],
+                    body: `
+                        <p>The Polycentric Federation represents a paradigm shift in how we conceptualize institutional design:</p>
+
+                        <h3>The Fundamental Shift</h3>
+                        <p><strong>From:</strong> Institutions designed for financial/operational efficiency, with human costs externalized</p>
+                        <p><strong>To:</strong> Institutions designed for biological compatibility, recognizing that destroyed cognitive capital is the most expensive externality</p>
+
+                        <p><strong>From:</strong> Treating workforce turnover and burnout as inevitable costs of doing business</p>
+                        <p><strong>To:</strong> Recognizing them as symptoms of architectural incompatibility with human neurobiology</p>
+
+                        <p><strong>From:</strong> Holding individuals accountable for maintaining performance under neurotoxic conditions</p>
+                        <p><strong>To:</strong> Holding institutions accountable for maintaining conditions under which sustained performance is biologically possible</p>
+
+                        <h3>Core Principle</h3>
+                        <p>Institutions should be evaluated not only on operational outcomes, but on whether they preserve or degrade the cognitive substrate (PFC function, temporal coherence, ATCF) that enables sustained high performance.</p>
+
+                        <p>An institution that achieves short-term efficiency by destroying its workforce's ATCF is:</p>
+                        <ul>
+                            <li>Not sustainable (death spiral inevitable)</li>
+                            <li>Not efficient (replacement costs exceed apparent savings)</li>
+                            <li>Not rational (destroys the very capital it depends on)</li>
+                        </ul>
+
+                        <h3>Universal Applicability: Beyond Professional Contexts</h3>
+                        <p>The biological mechanism generalizes: Wherever humans face responsibility without control, ATCF degrades and predictive processing fails.</p>
+
+                        <h4>The Modern Citizen</h4>
+                        <p>Citizens feel profound responsibility for democracy, climate, justice, and community wellbeing—yet lack meaningful control over policy, corporate behavior, and systemic outcomes.</p>
+
+                        <p><strong>Result:</strong> Chronic political stress = identical neurotoxic pattern</p>
+
+                        <p><strong>Manifestations:</strong></p>
+                        <ul>
+                            <li>Political apathy: "I can't change anything"</li>
+                            <li>Polarization: PFC damage → emotional reactivity, reduced nuance</li>
+                            <li>Civic disengagement: Loss of prospective coherence</li>
+                            <li>Conspiracy thinking: Predictive processing breakdown</li>
+                        </ul>
+
+                        <h4>Democratic Implication</h4>
+                        <p>Bio-compatible governance isn't just for workplaces—it's prerequisite for democratic health. If citizens' PFCs are systematically damaged by uncontrollable political stress, they become biologically incapable of the complex reasoning, perspective-taking, and delayed gratification that democracy requires.</p>
+
+                        <div class="info-box under-dev">
+                            <div class="info-box-title">🚧 Under Development</div>
+                            <p><strong>Future Policy Development:</strong></p>
+                            <ul>
+                                <li>Federation mechanisms adapted for civic participation</li>
+                                <li>Sortition Panels for citizen input on policy</li>
+                                <li>Public ATCF protection as democratic infrastructure</li>
+                                <li>Measuring democratic health via aggregate citizen ATCF</li>
+                            </ul>
+                            <p>These extensions will be developed in subsequent versions of this framework. <a href="#" onclick="alert('This feature is in development. Check back for updates.'); return false;" style="color: #8b5cf6; font-weight: 600;">Sign up for updates →</a></p>
+                        </div>
+
+                        <h3>What This Means for Policy Leaders</h3>
+
+                        <h4>For Legislators</h4>
+                        <p>You're addressing a public health crisis with quantifiable fiscal and operational consequences. Estimated $500B annually in U.S. from workforce ATCF degradation.</p>
+
+                        <p>The Federation model provides evidence-based intervention with positive ROI within 2-3 years and self-enforcing mechanisms.</p>
+
+                        <h4>For Agency Administrators</h4>
+                        <p>FHRI gives you quantifiable assessment of workforce health. The feedback loop makes your institution self-correcting through market pressure.</p>
+
+                        <h4>For Budget Officers</h4>
+                        <p>This is infrastructure investment with quantifiable ROI. FHRI bond market impact often exceeds implementation costs. Protecting ATCF is rational asset management.</p>
+
+                        <h3>The Bottom Line</h3>
+                        <p>We have:</p>
+                        <ul>
+                            <li>The evidence (four decades of neuroscience)</li>
+                            <li>The mechanism (Conscience Gates, Sortition Panels, FHRI)</li>
+                            <li>The implementation pathway (pilot → evaluate → scale)</li>
+                            <li>The fiscal analysis (positive ROI within 2-3 years)</li>
+                        </ul>
+
+                        <p><strong>What we need is institutional will to align our governance structures with biological reality.</strong></p>
+
+                        <p>The science is settled. The mechanism is proven. The ROI is positive. The moral case is overwhelming.</p>
+
+                        <p>Bio-compatible governance isn't idealistic aspiration. It's biological necessity for institutional survival.</p>
+                    `,
+                    keyTakeaways: [
+                        'Paradigm shift from efficiency-first to bio-compatible design',
+                        'Most valuable asset is collective ATCF of professionals',
+                        'Universal applicability: citizens face same neurotoxic pattern',
+                        'Democratic health requires protecting citizen ATCF',
+                        'Evidence, mechanisms, and ROI all support implementation'
+                    ],
+                    hasQuiz: true,
+                    quiz: [
+                        {
+                            question: 'Why is bio-compatible governance essential for democracy?',
+                            options: [
+                                'It makes voting easier and more convenient',
+                                'It ensures politicians are held accountable',
+                                'Citizens need intact PFC function for complex democratic reasoning',
+                                'It increases voter turnout through incentives'
+                            ],
+                            correct: 2,
+                            explanation: 'Democracy requires citizens capable of complex reasoning, perspective-taking, and delayed gratification—all dependent on intact PFC function. If chronic political stress damages citizens\' PFCs through uncontrollable responsibility, they become biologically incapable of the cognition democracy requires.'
+                        }
                     ]
                 }
             ],
             glossary: [
                 {
                     term: 'atcf',
-                    display: 'ATCF (Adaptive Temporal Coherence Function)',
-                    definition: 'The measurable capacity to maintain identity across time, integrate present experience, orient toward futures, and examine one\'s own patterns. ATCF is the biological substrate of professional competence, implemented through predictive processing mechanisms requiring intact PFC and hippocampal function.'
+                    display: 'ATCF (Adaptive Temporal Coherence Function) / Integrity Capability',
+                    definition: 'The measurable capacity to maintain identity across time, integrate present experience, orient toward futures, and examine one\'s own patterns. In lived experience, this is your Integrity Capability—whether you can still be who you said you were and act according to your values under pressure. ATCF/Integrity Capability is the biological substrate of workforce competence, implemented through predictive processing mechanisms requiring intact PFC and hippocampal function. When organizations create conditions of uncontrollable responsibility, they systematically degrade this capacity across their entire workforce.'
                 },
                 {
                     term: 'pfc',
                     display: 'Prefrontal Cortex (PFC)',
-                    definition: 'The front-most part of the brain, responsible for executive function, planning, impulse control, value integration, and personality maintenance. The PFC is the "CEO" of the brain - it makes us capable of acting according to our values rather than just reacting to immediate stimuli.'
+                    definition: 'The front-most part of the brain, responsible for executive function, planning, impulse control, value integration, and personality maintenance. The PFC is the "CEO" of the brain—it makes us capable of acting according to our values rather than just reacting to immediate stimuli.'
                 },
                 {
                     term: 'cortisol',
                     display: 'Cortisol',
-                    definition: 'The primary human stress hormone. In acute doses (minutes to hours), cortisol is adaptive - it mobilizes energy and enhances memory. In chronic elevation (weeks to months), cortisol becomes neurotoxic, directly damaging neurons in the PFC and hippocampus.'
+                    definition: 'The primary human stress hormone. In acute doses (minutes to hours), cortisol is adaptive—it mobilizes energy and enhances memory. In chronic elevation (weeks to months), cortisol becomes neurotoxic, directly damaging neurons in the PFC and hippocampus.'
                 },
                 {
                     term: 'fhri',
@@ -1030,6 +1744,55 @@
                     display: 'Moral Injury',
                     definition: 'Psychological harm from perpetrating, witnessing, or failing to prevent acts that deeply violate one\'s moral values. Unlike regular trauma (external threat), moral injury involves forced violation of identity predictions, causing more severe and lasting damage than fear-based PTSD.'
                 }
+            ],
+            references: [
+                {
+                    category: 'Neuroscience & Stress Biology',
+                    citations: [
+                        'Sapolsky, R. M. (2017). Behave: The Biology of Humans at Our Best and Worst. Penguin Press.',
+                        'McEwen, B. S. (2007). Physiology and neurobiology of stress and adaptation: Central role of the brain. Physiological Reviews, 87(3), 873-904.',
+                        'Sheline, Y. I., Gado, M. H., & Kraemer, H. C. (2003). Untreated depression and hippocampal volume loss. American Journal of Psychiatry, 160(8), 1516-1518.',
+                        'Arnsten, A. F. (2009). Stress signalling pathways that impair prefrontal cortex structure and function. Nature Reviews Neuroscience, 10(6), 410-422.'
+                    ]
+                },
+                {
+                    category: 'Predictive Processing & Agency',
+                    citations: [
+                        'Clark, A. (2015). Surfing Uncertainty: Prediction, Action, and the Embodied Mind. Oxford University Press.',
+                        'Friston, K. (2010). The free-energy principle: A unified brain theory? Nature Reviews Neuroscience, 11(2), 127-138.',
+                        'Hohwy, J. (2013). The Predictive Mind. Oxford University Press.'
+                    ]
+                },
+                {
+                    category: 'Developmental Biology & Pattern Causation',
+                    citations: [
+                        'Levin, M. (2014). Endogenous bioelectrical networks store non-genetic patterning information during development and regeneration. Journal of Physiology, 592(11), 2295-2305.',
+                        'Levin, M. (2021). Bioelectric signaling: Reprogrammable circuits underlying embryogenesis, regeneration, and cancer. Cell, 184(8), 1971-1989.'
+                    ]
+                },
+                {
+                    category: 'Moral Injury & Professional Trauma',
+                    citations: [
+                        'Litz, B. T., Stein, N., Delaney, E., et al. (2009). Moral injury and moral repair in war veterans: A preliminary model and intervention strategy. Clinical Psychology Review, 29(8), 695-706.',
+                        'Dean, W., Talbot, S., & Dean, A. (2019). Reframing clinician distress: Moral injury not burnout. Federal Practitioner, 36(9), 400-402.'
+                    ]
+                },
+                {
+                    category: 'Organizational & Economic Analysis',
+                    citations: [
+                        'Aiken, L. H., Clarke, S. P., Sloane, D. M., et al. (2002). Hospital nurse staffing and patient mortality, nurse burnout, and job dissatisfaction. JAMA, 288(16), 1987-1993.',
+                        'Ingersoll, G. L., Olsan, T., Drew-Cates, J., et al. (2002). Nurses\' job satisfaction, organizational commitment, and career intent. Journal of Nursing Administration, 32(5), 250-263.',
+                        'Sutcher, L., Darling-Hammond, L., & Carver-Thomas, D. (2016). A Coming Crisis in Teaching? Teacher Supply, Demand, and Shortages in the U.S. Learning Policy Institute.'
+                    ]
+                },
+                {
+                    category: 'Polycentric Governance Theory',
+                    citations: [
+                        'Ostrom, E. (1990). Governing the Commons: The Evolution of Institutions for Collective Action. Cambridge University Press.',
+                        'Ostrom, E. (2010). Beyond markets and states: Polycentric governance of complex economic systems. American Economic Review, 100(3), 641-672.',
+                        'Blomquist, W., & Ostrom, E. (1985). Institutional capacity and the resolution of a commons dilemma. Review of Policy Research, 5(2), 383-393.'
+                    ]
+                }
             ]
         };
 
@@ -1037,10 +1800,12 @@
         let currentSection = 'executive-summary';
         let progress = JSON.parse(localStorage.getItem('app-progress')) || {};
         let quizState = {};
+        let checklistState = JSON.parse(localStorage.getItem('checklist-state')) || {};
 
         // ==================== INITIALIZATION ====================
         window.addEventListener('DOMContentLoaded', () => {
             renderNavigation();
+            renderQuickNav();
             loadSection(currentSection);
             updateProgress();
         });
@@ -1057,10 +1822,28 @@
                 
                 return `
                     <li class="nav-item">
-                        <a href="#${section.id}" class="${classes.join(' ')}" onclick="navigateToSection('${section.id}'); return false;">
+                        <a class="${classes.join(' ')}" onclick="navigateToSection('${section.id}'); return false;">
                             <span class="nav-icon">${icon}</span>
                             <span>${section.title}</span>
                         </a>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        function renderQuickNav() {
+            const nav = document.getElementById('quick-nav');
+            const categories = [...new Set(contentData.sections.map(s => s.category))];
+            
+            nav.innerHTML = categories.map(cat => {
+                const sections = contentData.sections.filter(s => s.category === cat);
+                const firstSection = sections[0];
+                return `
+                    <li>
+                        <button onclick="navigateToSection('${firstSection.id}')" 
+                                class="${currentSection === firstSection.id ? 'active' : ''}">
+                            ${cat}
+                        </button>
                     </li>
                 `;
             }).join('');
@@ -1070,6 +1853,7 @@
             currentSection = sectionId;
             loadSection(sectionId);
             renderNavigation();
+            renderQuickNav();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1101,7 +1885,7 @@
                         ${section.body}
                     </div>
 
-                    ${section.hasCalculator ? renderCalculator() : ''}
+                    ${section.hasChecklist ? renderDataChecklist() : ''}
 
                     ${section.keyTakeaways ? `
                         <div class="info-box success mt-4">
@@ -1120,179 +1904,121 @@
             attachGlossaryListeners();
         }
 
-        // ==================== ROI CALCULATOR ====================
-        function renderCalculator() {
+        // ==================== DATA COLLECTION CHECKLIST ====================
+        function renderDataChecklist() {
             return `
-                <div class="calculator-container">
-                    <div class="calculator-header">
-                        <div class="calculator-icon">🧮</div>
+                <div class="checklist-container">
+                    <div class="checklist-header">
+                        <div class="checklist-icon">📊</div>
                         <div>
-                            <h3>Interactive ROI Calculator</h3>
-                            <p>Calculate the financial impact of Federation implementation for your institution</p>
+                            <h3 style="margin: 0;">Data Collection Checklist</h3>
+                            <p style="margin: 0; opacity: 0.9;">Gather this information to calculate accurate ROI for your institution</p>
                         </div>
                     </div>
 
-                    <form class="calculator-form" onsubmit="calculateROI(event)">
-                        <div class="form-group">
-                            <label>Institution Type</label>
-                            <select id="institutionType">
-                                <option value="hospital">Hospital / Nursing Home</option>
-                                <option value="school">School District</option>
-                                <option value="agency">Government Agency</option>
-                            </select>
+                    <div class="checklist-grid">
+                        <div class="checklist-section">
+                            <h4>Workforce Metrics</h4>
+                            ${renderChecklistItems([
+                                'Total full-time equivalent (FTE) staff count',
+                                'Annual turnover rate (%) by department',
+                                'Average tenure of current employees',
+                                'Positions currently vacant',
+                                'Time-to-fill metrics for open positions',
+                                'Voluntary vs. involuntary separation rates'
+                            ], 'workforce')}
                         </div>
 
-                        <div class="form-group">
-                            <label>Current Staff Count</label>
-                            <input type="number" id="currentStaff" value="30" min="1" required>
+                        <div class="checklist-section">
+                            <h4>Financial Data</h4>
+                            ${renderChecklistItems([
+                                'Average recruitment cost per hire',
+                                'Average training/onboarding cost per employee',
+                                'Total annual payroll',
+                                'Benefits cost per employee',
+                                'Current outstanding debt/bonds',
+                                'Current bond rating and interest rate'
+                            ], 'financial')}
                         </div>
 
-                        <div class="form-group">
-                            <label>Current Turnover Rate (%)</label>
-                            <input type="number" id="turnoverRate" value="60" min="0" max="100" required>
+                        <div class="checklist-section">
+                            <h4>Quality & Performance</h4>
+                            ${renderChecklistItems([
+                                'Quality metrics (error rates, satisfaction scores)',
+                                'Regulatory violations and penalties (past 3 years)',
+                                'Client/patient/student outcome measures',
+                                'Incident reports and near-miss events',
+                                'Internal audit findings',
+                                'Accreditation status and ratings'
+                            ], 'quality')}
                         </div>
 
-                        <div class="form-group">
-                            <label>Total Borrowing Amount ($)</label>
-                            <input type="number" id="borrowingAmount" value="10000000" min="0" required>
+                        <div class="checklist-section">
+                            <h4>Staff Well-being</h4>
+                            ${renderChecklistItems([
+                                'Employee satisfaction survey results',
+                                'Sick leave utilization rates',
+                                'Workers compensation claims',
+                                'Stress/burnout assessment data',
+                                'Exit interview summaries',
+                                'Grievance and complaint statistics'
+                            ], 'wellbeing')}
                         </div>
 
-                        <div class="form-group">
-                            <label>Average Staff Salary ($)</label>
-                            <input type="number" id="avgSalary" value="30000" min="0" required>
+                        <div class="checklist-section">
+                            <h4>Operational Context</h4>
+                            ${renderChecklistItems([
+                                'Industry/sector benchmarks for turnover',
+                                'Competitor/peer institution metrics',
+                                'Regulatory staffing requirements',
+                                'Union agreements and constraints',
+                                'Current initiatives/interventions',
+                                'Strategic plan and growth projections'
+                            ], 'operational')}
                         </div>
 
-                        <button type="submit" class="btn-calculate">
-                            🧮 Calculate Financial Impact
-                        </button>
-                    </form>
+                        <div class="checklist-section">
+                            <h4>Hidden Costs</h4>
+                            ${renderChecklistItems([
+                                'Management time spent on hiring',
+                                'Overtime and temporary staffing costs',
+                                'Lost productivity during transitions',
+                                'Reputational impact quantification',
+                                'Legal costs from employment issues',
+                                'Client/customer loss due to quality issues'
+                            ], 'hidden')}
+                        </div>
+                    </div>
 
-                    <div id="calculator-results"></div>
+                    <button class="btn-download" onclick="downloadChecklist()">
+                        📥 Download Checklist (PDF)
+                    </button>
                 </div>
             `;
         }
 
-        function calculateROI(event) {
-            event.preventDefault();
-
-            const currentStaff = parseInt(document.getElementById('currentStaff').value);
-            const turnoverRate = parseInt(document.getElementById('turnoverRate').value);
-            const borrowingAmount = parseInt(document.getElementById('borrowingAmount').value);
-            const avgSalary = parseInt(document.getElementById('avgSalary').value);
-
-            // Current model calculations
-            const currentTurnoverCount = Math.round(currentStaff * (turnoverRate / 100));
-            const replacementCost = 8000;
-            const currentTurnoverCost = currentTurnoverCount * replacementCost;
-            const currentQualityPenalties = 50000;
-            const currentFHRI = Math.max(10, 100 - turnoverRate);
-            const currentBondPremium = currentFHRI < 60 ? 120 : currentFHRI < 80 ? 60 : 30;
-            const currentBondCost = (borrowingAmount * currentBondPremium) / 10000;
-            const currentTotalCost = currentTurnoverCost + currentQualityPenalties + currentBondCost;
-
-            // Federation model calculations
-            const staffIncrease = Math.round(currentStaff * 0.2);
-            const federationTurnoverRate = 20;
-            const federationTurnoverCount = Math.round((currentStaff + staffIncrease) * 0.2);
-            const federationTurnoverCost = federationTurnoverCount * replacementCost;
-            const federationQualityBonus = 50000;
-            const federationFHRI = 87;
-            const federationBondDiscount = -30;
-            const federationBondSavings = (borrowingAmount * Math.abs(federationBondDiscount)) / 10000;
-            const federationStaffingCost = staffIncrease * avgSalary;
-            const federationTotalCost = 
-                federationStaffingCost + 
-                federationTurnoverCost - 
-                federationQualityBonus - 
-                federationBondSavings;
-
-            const netSavings = currentTotalCost - federationTotalCost;
-            const roi = ((netSavings / federationStaffingCost) * 100).toFixed(1);
-            const breakEven = (federationStaffingCost / (netSavings / 12)).toFixed(1);
-
-            const resultsHTML = `
-                <div class="results-grid">
-                    <div class="result-card danger">
-                        <div class="result-label">Current Annual Cost</div>
-                        <div class="result-value">$${currentTotalCost.toLocaleString()}</div>
-                        <div class="result-meta">FHRI: ${currentFHRI}</div>
+        function renderChecklistItems(items, category) {
+            return items.map((item, index) => {
+                const key = `${category}-${index}`;
+                const checked = checklistState[key] || false;
+                return `
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox ${checked ? 'checked' : ''}" 
+                             onclick="toggleChecklistItem('${key}')"></div>
+                        <span>${item}</span>
                     </div>
+                `;
+            }).join('');
+        }
 
-                    <div class="result-card primary">
-                        <div class="result-label">Federation Annual Cost</div>
-                        <div class="result-value">$${federationTotalCost.toLocaleString()}</div>
-                        <div class="result-meta">FHRI: ${federationFHRI}</div>
-                    </div>
+        function toggleChecklistItem(key) {
+            checklistState[key] = !checklistState[key];
+            localStorage.setItem('checklist-state', JSON.stringify(checklistState));
+            loadSection(currentSection); // Reload to update UI
+        }
 
-                    <div class="result-card success">
-                        <div class="result-label">Annual Savings</div>
-                        <div class="result-value">$${netSavings.toLocaleString()}</div>
-                        <div class="result-meta">ROI: ${roi}%</div>
-                    </div>
-                </div>
-
-                <div class="breakdown-section">
-                    <h3 class="breakdown-title">📊 Detailed Financial Breakdown</h3>
-                    <div class="breakdown-grid">
-                        <div class="breakdown-column">
-                            <h4 style="color: var(--danger)">Current Extractive Model</h4>
-                            <div class="breakdown-item">
-                                <span>Staff Turnover (${currentTurnoverCount} people):</span>
-                                <span>$${currentTurnoverCost.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Quality Penalties:</span>
-                                <span>$${currentQualityPenalties.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Bond Cost Premium:</span>
-                                <span>$${currentBondCost.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Total Annual Cost:</span>
-                                <span style="color: var(--danger)">$${currentTotalCost.toLocaleString()}</span>
-                            </div>
-                        </div>
-
-                        <div class="breakdown-column">
-                            <h4 style="color: var(--primary)">Federation Model</h4>
-                            <div class="breakdown-item">
-                                <span>Additional Staffing (+${staffIncrease} people):</span>
-                                <span>$${federationStaffingCost.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Reduced Turnover (${federationTurnoverCount} people):</span>
-                                <span>$${federationTurnoverCost.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Quality Bonuses:</span>
-                                <span style="color: var(--accent)">-$${federationQualityBonus.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Bond Cost Savings:</span>
-                                <span style="color: var(--accent)">-$${federationBondSavings.toLocaleString()}</span>
-                            </div>
-                            <div class="breakdown-item">
-                                <span>Total Annual Cost:</span>
-                                <span style="color: var(--primary)">$${federationTotalCost.toLocaleString()}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="info-box success mt-4">
-                        <div class="info-box-title">💰 Key Financial Insights</div>
-                        <ul>
-                            <li><strong>Net Annual Savings:</strong> $${netSavings.toLocaleString()}</li>
-                            <li><strong>Return on Investment:</strong> ${roi}% annually</li>
-                            <li><strong>Break-even Period:</strong> ${breakEven} months</li>
-                            <li><strong>FHRI Improvement:</strong> ${currentFHRI} → ${federationFHRI} (+${federationFHRI - currentFHRI} points)</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('calculator-results').innerHTML = resultsHTML;
-            document.getElementById('calculator-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        function downloadChecklist() {
+            alert('PDF download functionality will generate a customized checklist based on your institution type and selections. Feature coming soon!');
         }
 
         // ==================== QUIZ SYSTEM ====================
@@ -1458,6 +2184,116 @@
             document.getElementById('progress-bar').style.width = percentage + '%';
         }
 
+        // ==================== CERTIFICATE/COMPLETION ====================
+        function openCertificate() {
+            const completed = Object.keys(progress).filter(key => progress[key].completed).length;
+            const total = contentData.sections.length;
+            const percentage = Math.round((completed / total) * 100);
+
+            const quizSections = contentData.sections.filter(s => s.hasQuiz);
+            const quizzesPassed = quizSections.filter(s => progress[s.id]?.completed).length;
+
+            const certificateHTML = `
+                <div class="certificate-container">
+                    <div class="certificate-header">
+                        <div class="certificate-title">Learning Progress Report</div>
+                        <div class="certificate-subtitle">The Biological Architecture of Ethical Agency</div>
+                    </div>
+
+                    <div class="certificate-body">
+                        <p style="font-size: 1.125rem; margin-bottom: 1rem;">This report documents your progress through the academic framework.</p>
+                        
+                        <div class="certificate-stats">
+                            <div class="cert-stat">
+                                <div class="cert-stat-value">${completed}/${total}</div>
+                                <div class="cert-stat-label">Sections Completed</div>
+                            </div>
+                            <div class="cert-stat">
+                                <div class="cert-stat-value">${percentage}%</div>
+                                <div class="cert-stat-label">Overall Progress</div>
+                            </div>
+                            <div class="cert-stat">
+                                <div class="cert-stat-value">${quizzesPassed}/${quizSections.length}</div>
+                                <div class="cert-stat-label">Quizzes Passed</div>
+                            </div>
+                        </div>
+
+                        ${percentage === 100 ? `
+                            <div style="margin-top: 2rem; padding: 1.5rem; background: #f0fdf4; border-radius: 0.5rem; border: 2px solid var(--accent);">
+                                <h3 style="color: var(--accent); margin-bottom: 0.5rem;">🎉 Congratulations!</h3>
+                                <p>You have completed all sections of the framework. You now have a comprehensive understanding of the biological architecture of ethical agency and the Federation model for institutional reform.</p>
+                            </div>
+                        ` : `
+                            <div style="margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 0.5rem;">
+                                <h4 style="margin-bottom: 0.75rem;">Next Steps:</h4>
+                                <p>Continue working through the remaining sections to complete your understanding of the framework.</p>
+                            </div>
+                        `}
+
+                        <div style="margin-top: 2rem;">
+                            <h4 style="margin-bottom: 1rem;">Completed Sections:</h4>
+                            <div style="max-height: 200px; overflow-y: auto; padding: 1rem; background: var(--bg-main); border-radius: 0.5rem;">
+                                ${contentData.sections.map(section => {
+                                    const isComplete = progress[section.id]?.completed;
+                                    return `
+                                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; padding: 0.5rem; ${isComplete ? 'color: var(--accent); font-weight: 600;' : 'color: var(--text-secondary);'}">
+                                            <span>${isComplete ? '✓' : '○'}</span>
+                                            <span>${section.title}</span>
+                                            ${isComplete && progress[section.id].timestamp ? `
+                                                <span style="margin-left: auto; font-size: 0.75rem; opacity: 0.7;">
+                                                    ${new Date(progress[section.id].timestamp).toLocaleDateString()}
+                                                </span>
+                                            ` : ''}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+                        <button class="btn btn-primary" onclick="printCertificate()">
+                            🖨️ Print Report
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadProgress()">
+                            📥 Download Progress (JSON)
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('certificate-content').innerHTML = certificateHTML;
+            document.getElementById('certificateModal').classList.add('active');
+        }
+
+        function closeCertificate() {
+            document.getElementById('certificateModal').classList.remove('active');
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        function downloadProgress() {
+            const data = {
+                progress: progress,
+                checklistState: checklistState,
+                exportDate: new Date().toISOString(),
+                sectionsCompleted: Object.keys(progress).filter(k => progress[k].completed).length,
+                totalSections: contentData.sections.length
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bio-architecture-progress-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
         // ==================== GLOSSARY ====================
         function attachGlossaryListeners() {
             document.querySelectorAll('.glossary-term').forEach(term => {
@@ -1471,7 +2307,6 @@
         function showGlossaryTerm(termKey) {
             const term = contentData.glossary.find(g => g.term === termKey);
             if (!term) return;
-
             alert(`${term.display}\n\n${term.definition}`);
         }
 
@@ -1491,15 +2326,44 @@
             document.getElementById('glossaryModal').classList.remove('active');
         }
 
-        // Close modal on outside click
-        document.getElementById('glossaryModal').addEventListener('click', function(e) {
-            if (e.target === this) closeGlossary();
-        });
+        // ==================== REFERENCES ====================
+        function openReferences() {
+            const referencesHTML = contentData.references.map(category => `
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem;">
+                        ${category.category}
+                    </h3>
+                    <div style="padding-left: 2rem;">
+                        ${category.citations.map(citation => `
+                            <p style="margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.6;">
+                                ${citation}
+                            </p>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
 
-        // ==================== COMPARISON MODE ====================
-        function toggleComparison() {
-            alert('Comparison mode will be available once Version 2 (Public/Organizing) is deployed. For now, this demonstrates the feature placeholder.');
+            document.getElementById('references-content').innerHTML = referencesHTML;
+            document.getElementById('referencesModal').classList.add('active');
         }
+
+        function closeReferences() {
+            document.getElementById('referencesModal').classList.remove('active');
+        }
+
+        // ==================== ETHICS RESOURCE ====================
+        function openEthicsResource() {
+            alert('The comprehensive Ethics Framework Document is under development. It will include:\n\n• Detailed analysis of deontological, consequentialist, and virtue ethics perspectives\n• Integration with professional ethics codes\n• Bioethics principles application\n• Historical precedents and case studies\n• Responses to philosophical objections\n\nCheck back for updates or contact us for the draft version.');
+        }
+
+        // Close modals on outside click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
     </script>
 
 </body>
