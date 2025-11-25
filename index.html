@@ -2206,11 +2206,43 @@
                     ` : ''}
 
                     ${section.hasQuiz ? renderQuizButton(section.id) : ''}
+                    
+                    ${renderSectionNavigation(section.id)}
                 </div>
             `;
 
             document.getElementById('content-section').innerHTML = html;
             attachGlossaryListeners();
+        }
+        // ==================== SECTION NAVIGATION ====================
+        function renderSectionNavigation(currentSectionId) {
+            const currentIndex = contentData.sections.findIndex(s => s.id === currentSectionId);
+            const prevSection = currentIndex > 0 ? contentData.sections[currentIndex - 1] : null;
+            const nextSection = currentIndex < contentData.sections.length - 1 ? contentData.sections[currentIndex + 1] : null;
+
+            return `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border); gap: 1rem; flex-wrap: wrap;">
+                    ${prevSection ? `
+                        <button class="btn btn-secondary" onclick="navigateToSection('${prevSection.id}')" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span>←</span>
+                            <span style="text-align: left;">
+                                <div style="font-size: 0.75rem; opacity: 0.8;">Previous</div>
+                                <div>${prevSection.title}</div>
+                            </span>
+                        </button>
+                    ` : '<div></div>'}
+                    
+                    ${nextSection ? `
+                        <button class="btn btn-primary" onclick="navigateToSection('${nextSection.id}')" style="display: flex; align-items: center; gap: 0.5rem; margin-left: auto;">
+                            <span style="text-align: right;">
+                                <div style="font-size: 0.75rem; opacity: 0.9;">Next</div>
+                                <div>${nextSection.title}</div>
+                            </span>
+                            <span>→</span>
+                        </button>
+                    ` : '<div></div>'}
+                </div>
+            `;
         }
 
         // ==================== DATA COLLECTION CHECKLIST ====================
